@@ -7,7 +7,7 @@
 #' @returns <list> of character vectors
 #'
 #' @examples
-#' random_hcpcs_vec(5) |>
+#' random_hcpcs(5) |>
 #'    split_lengths()
 #'
 #' @autoglobal
@@ -18,7 +18,7 @@ split_lengths <- function(x, verbose = FALSE) {
   stopifnot(is.character(x))
 
   x <- stringfish::sf_gsub(x, "\\*|\\s", "", nthreads = 4L) |>
-    fuimus::uniq_rmna() |>
+    unique_narm() |>
     stringr::str_sort()
 
   l <- collapse::vlengths(x)

@@ -18,7 +18,7 @@ split_lengths(x, verbose = FALSE)
 Split Character Vector by Lengths
 }
 \examples{
-random_hcpcs_vec(5) |>
+random_hcpcs(5) |>
    split_lengths()
 
 }

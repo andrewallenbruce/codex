@@ -12,21 +12,21 @@ Depends:
     R (>= 4.1.0)
 Imports:
     collapse,
-    fuimus,
+    glue,
+    rlang,
     stringfish,
-    stringr
+    stringr,
+    vctrs
 Suggests: 
-    northstar,
-    roxyglobals,
+    fs,
+    pins,
     qs,
+    roxyglobals,
     testthat (>= 3.0.0)
-Remotes: 
-    github::andrewallenbruce/northstar,
-    github::andrewallenbruce/fuimus
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
 RoxygenNote: 7.3.2
-Config/testthat/edition: 3
