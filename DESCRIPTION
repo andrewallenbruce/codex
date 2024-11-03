@@ -16,7 +16,9 @@ Imports:
     rlang,
     stringfish,
     stringr,
-    vctrs
+    vctrs,
+    purrr,
+    stats
 Suggests: 
     fs,
     pins,

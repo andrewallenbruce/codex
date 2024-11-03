@@ -11,15 +11,13 @@
 #' @autoglobal
 random_hcpcs <- function(n = 10) {
 
-  h <- stringfish::convert_to_sf(get_pin("hcpcs_vec"))
+  h <- stringfish::convert_to_sf(
+    get_pin("hcpcs_vec"))
 
-  ltrs <- LETTERS[stringfish::sf_grepl(LETTERS, "[^DINOW-Z]", nthreads = 4L)]
-
-  c(
-    sample(c(ltrs, 0:9), size = sample.int(5, 1)),
-    sfsub(sample(h, n), z = 2),
-    sfsub(sample(h, n), z = 3),
-    sfsub(sample(h, n), z = 4),
-    sfsub(sample(h, n), z = 5)
+  c(sample(c(sf_extract(LETTERS, "[^DINOW-Z]"), 0:9), size = sample.int(5, 1)),
+    sf_sub(sample(h, n), z = 2),
+    sf_sub(sample(h, n), z = 3),
+    sf_sub(sample(h, n), z = 4),
+    sf_sub(sample(h, n), z = 5)
   )
 }

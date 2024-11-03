@@ -65,7 +65,25 @@ sf_sub <- \(x, i = 1, z) stringfish::sf_substr(x, start = i, stop = z, nthreads 
 #' @autoglobal
 #' @keywords internal
 #' @export
-sf_extract <- \(s, p) x[stringfish::sf_grepl(s, p, nthreads = 4L)]
+sf_extract <- \(s, p) s[stringfish::sf_grepl(s, p, nthreads = 4L)]
+
+#' Detect by Regex
+#' @param s subject
+#' @param p pattern
+#' @returns vector
+#' @autoglobal
+#' @keywords internal
+#' @export
+sf_detect <- \(s, p) stringfish::sf_grepl(s, p, nthreads = 4L)
+
+#' Remove by Regex
+#' @param s subject
+#' @param p pattern
+#' @returns vector
+#' @autoglobal
+#' @keywords internal
+#' @export
+sf_remove <- \(s, p) stringfish::sf_gsub(s, p, "", nthreads = 4L)
 
 #' Sort Order
 #' @param x vector
@@ -85,4 +103,44 @@ sort_order <- \(x) {
     paste0(alph, collapse = ""),
     paste0(numb, collapse = "")
   )
+}
+
+#' Lump Like Vectors Together
+#' @param x vector
+#' @returns vector
+#' @autoglobal
+#' @keywords internal
+#' @export
+lump <- function(x, threshold = 3) {
+
+  stopifnot(is.numeric(x))
+
+  xo <- order(x)
+
+  xs <- x[xo]
+
+  dlag <- abs(c(0, xs[-1] - xs[seq_along(xs) - 1]))
+
+  bi <- ifelse(dlag >= threshold, 1, 0)
+
+  id <- cumsum(bi) + 1
+
+  id[xo]
+}
+
+#' Convert Letters to Integers
+#' @param x vector of letters
+#' @examples
+#' letters_to_numbers(LETTERS)
+#' @returns vector of integers
+#' @autoglobal
+#' @keywords internal
+#' @export
+letters_to_numbers <- \(x) {
+
+  unname(
+    setNames(
+      seq_along(LETTERS), LETTERS)[
+      sf_extract(x, "[A-Z]{1}")]
+    )
 }

@@ -17,7 +17,7 @@ split_lengths <- function(x, verbose = FALSE) {
 
   stopifnot(is.character(x))
 
-  x <- stringfish::sf_gsub(x, "\\*|\\s", "", nthreads = 4L) |>
+  x <- sf_remove(x, "\\*|\\s") |>
     unique_narm() |>
     stringr::str_sort()
 
@@ -31,15 +31,8 @@ split_lengths <- function(x, verbose = FALSE) {
     x5 = x[l == 5])
 
   if (verbose) {
-
-    # cat("Split by Length:", sep = "\n")
-
-    # cat("\n")
-
-    # cat(view(out), sep = "\n")
-    #
-    # return(invisible(out))
-
+    return(invisible(out))
+  } else {
+    return(out)
   }
-  return(out)
 }
