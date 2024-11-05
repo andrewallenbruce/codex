@@ -1,3 +1,11 @@
+#' Lengths
+#' @param x vector
+#' @returns vector
+#' @autoglobal
+#' @keywords internal
+#' @export
+vlen <- \(x) collapse::vlengths(x, use.names = FALSE)
+
 #' Unique Lengths
 #' @param x vector
 #' @returns vector
