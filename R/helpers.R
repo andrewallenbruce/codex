@@ -133,6 +133,7 @@ lump <- function(x, threshold = 3) {
 #' @examples
 #' letters_to_numbers(LETTERS)
 #' @returns vector of integers
+#' @importFrom stats setNames
 #' @autoglobal
 #' @keywords internal
 #' @export

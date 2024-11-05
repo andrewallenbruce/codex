@@ -17,8 +17,7 @@ Imports:
     stringfish,
     stringr,
     vctrs,
-    purrr,
-    stats
+    purrr
 Suggests: 
     fs,
     pins,

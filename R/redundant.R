@@ -1,6 +1,7 @@
 #' Contrast Redundant Characters
 #'
 #' @param long <character> vector
+#'
 #' @param short <character> vector
 #'
 #' @returns <character> vector
@@ -27,6 +28,13 @@ contrast <- rr <- \(long, short) {
       i = 1,
       z = unique_vlength(short)) %!in% short]
 }
+
+#' Alias for `contrast()`
+#' @inherit contrast
+#' @param ... arguments passed to `contrast()`
+#' @export
+#' @autoglobal
+rr <- \(...) contrast(...)
 
 #' Remove Redundant Characters
 #'
