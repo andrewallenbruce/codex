@@ -13,11 +13,11 @@ Depends:
 Imports:
     collapse,
     glue,
+    purrr,
     rlang,
     stringfish,
     stringr,
-    vctrs,
-    purrr
+    vctrs
 Suggests: 
     fs,
     pins,
@@ -27,6 +27,7 @@ Suggests:
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
