@@ -21,7 +21,7 @@ split_lengths <- function(x, verbose = FALSE) {
     unique_narm() |>
     stringr::str_sort()
 
-  l <- collapse::vlengths(x)
+  l <- vlen(x)
 
   out <- list(
     x1 = x[l == 1],

@@ -7,17 +7,13 @@
 rr(...)
 }
 \arguments{
-\item{...}{arguments passed to \code{contrast()}}
-}
-\value{
-\if{html}{\out{<character>}} vector
+\item{...}{
+  Arguments passed on to \code{\link[=contrast]{contrast}}
+  \describe{
+    \item{\code{long}}{\if{html}{\out{<character>}} vector}
+    \item{\code{short}}{\if{html}{\out{<character>}} vector}
+  }}
 }
 \description{
 Alias for \code{contrast()}
-}
-\examples{
-contrast(
-   long = c("39550", "92083", "C5274"),
-   short = c("3", "5", "M", "U"))
-
 }

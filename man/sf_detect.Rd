@@ -9,12 +9,15 @@ sf_detect(s, p)
 \arguments{
 \item{s}{subject}
 
-\item{p}{pattern}
+\item{p}{regex pattern}
 }
 \value{
-vector
+\link{logical} vector
 }
 \description{
 Detect by Regex
 }
-\keyword{internal}
+\examples{
+sf_detect(random_hcpcs(), "[A-Z]{1}")
+
+}

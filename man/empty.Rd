@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{empty}
 \alias{empty}
-\title{Is Empty}
+\title{Is Vector Empty?}
 \usage{
 empty(x)
 }
@@ -13,6 +13,15 @@ empty(x)
 logical
 }
 \description{
-Is Empty
+Is Vector Empty?
 }
-\keyword{internal}
+\examples{
+empty(character(0))
+
+empty(c())
+
+empty(NULL)
+
+empty(NA)
+
+}

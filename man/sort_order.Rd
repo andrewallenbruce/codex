@@ -2,17 +2,22 @@
 % Please edit documentation in R/helpers.R
 \name{sort_order}
 \alias{sort_order}
-\title{Sort Order}
+\title{Sort and Order Vector}
 \usage{
 sort_order(x)
 }
 \arguments{
-\item{x}{vector}
+\item{x}{\link{character} vector}
 }
 \value{
 vector
 }
 \description{
-Sort Order
+Sort and Order Vector
 }
-\keyword{internal}
+\examples{
+(x <- sample(c(LETTERS, 0:9), size = 10))
+
+sort_order(x)
+
+}

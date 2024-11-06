@@ -9,7 +9,7 @@ sf_extract(s, p)
 \arguments{
 \item{s}{subject}
 
-\item{p}{pattern}
+\item{p}{regex pattern}
 }
 \value{
 vector
@@ -17,4 +17,7 @@ vector
 \description{
 Extract by Regex
 }
-\keyword{internal}
+\examples{
+sf_extract(random_hcpcs(), "[A-Z]{1}")
+
+}

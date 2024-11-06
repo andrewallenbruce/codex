@@ -17,4 +17,10 @@ vector
 \description{
 Chop Vector by Group
 }
-\keyword{internal}
+\examples{
+(v <- random_hcpcs(2))
+
+(g <- sample(1:2, size = length(v), replace = TRUE))
+
+chop(v, g)
+}

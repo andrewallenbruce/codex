@@ -1,111 +1,212 @@
-#' Lengths
+#' Lengths of Vector
+#'
 #' @param x vector
+#'
 #' @returns vector
+#'
+#' @examples
+#' random_hcpcs(5) |> vlen()
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
 vlen <- \(x) collapse::vlengths(x, use.names = FALSE)
 
-#' Unique Lengths
+#' Unique Lengths of Vector
+#'
 #' @param x vector
+#'
 #' @returns vector
+#'
+#' @examples
+#' random_hcpcs(5) |> unique_vlen()
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
-unique_vlength <- \(x) collapse::funique(collapse::vlengths(x, use.names = FALSE))
+unique_vlen <- \(x) collapse::funique(vlen(x))
 
 #' Unique Values with NAs Removed
+#'
 #' @param x vector
+#'
 #' @returns vector
+#'
+#' @examples
+#' unique_narm(c("A", NA, "A", 1))
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
 unique_narm <- \(x) collapse::funique(collapse::na_rm(x))
 
-#' Max of Lengths
+#' Maximum Vector Length
+#'
 #' @param x vector
+#'
 #' @returns integer
+#'
+#' @examples
+#' random_hcpcs(5) |> max_vlen()
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
-max_vlength <- \(x) collapse::fmax(collapse::vlengths(x, use.names = FALSE))
+max_vlen <- \(x) collapse::fmax(vlen(x))
 
-#' Is Empty
+#' Is Vector Empty?
+#'
 #' @param x vector
+#'
 #' @returns logical
+#'
+#' @examples
+#' empty(character(0))
+#'
+#' empty(c())
+#'
+#' empty(NULL)
+#'
+#' empty(NA)
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
 empty <- \(x) vctrs::vec_is_empty(x)
 
 #' Chop Vector by Group
+#'
 #' @param v vector
+#'
 #' @param g group
+#'
 #' @returns vector
+#'
+#' @examples
+#' (v <- random_hcpcs(2))
+#'
+#' (g <- sample(1:2, size = length(v), replace = TRUE))
+#'
+#' chop(v, g)
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
 chop <- \(v, g) vctrs::vec_chop(v, sizes = vctrs::vec_run_sizes(g))
 
-#' Subset Vector at Index
-#' @param x vector
-#' @param i index
-#' @returns vector
-#' @autoglobal
-#' @keywords internal
-#' @export
-take_at <- \(x, i = 1) stringfish::sf_substr(x, start = i, stop = i, nthreads = 4L)
-
 #' Subset Vector by Range
+#'
 #' @param x vector
+#'
 #' @param i index start
+#'
 #' @param z index end
+#'
 #' @returns vector
+#'
+#' @examples
+#' sf_sub(random_hcpcs(2), 1, 2)
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
 sf_sub <- \(x, i = 1, z) stringfish::sf_substr(x, start = i, stop = z, nthreads = 4L)
 
-#' Extract by Regex
-#' @param s subject
-#' @param p pattern
+#' Subset Vector at Index
+#'
+#' @param x vector
+#'
+#' @param i index
+#'
 #' @returns vector
+#'
+#' @examples
+#' take_at(random_hcpcs(2), 2)
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
-sf_extract <- \(s, p) s[stringfish::sf_grepl(s, p, nthreads = 4L)]
+take_at <- \(x, i = 1) sf_sub(x, i = i, z = i)
 
 #' Detect by Regex
+#'
 #' @param s subject
-#' @param p pattern
-#' @returns vector
+#'
+#' @param p regex pattern
+#'
+#' @returns [logical] vector
+#'
+#' @examples
+#' sf_detect(random_hcpcs(), "[A-Z]{1}")
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
 sf_detect <- \(s, p) stringfish::sf_grepl(s, p, nthreads = 4L)
 
-#' Remove by Regex
+#' Extract by Regex
+#'
 #' @param s subject
-#' @param p pattern
+#'
+#' @param p regex pattern
+#'
 #' @returns vector
+#'
+#' @examples
+#' sf_extract(random_hcpcs(), "[A-Z]{1}")
+#'
 #' @autoglobal
-#' @keywords internal
+#'
+#' @export
+sf_extract <- \(s, p) s[sf_detect(s, p)]
+
+#' Remove by Regex
+#'
+#' @param s subject
+#'
+#' @param p regex pattern
+#'
+#' @returns vector
+#'
+#' @examples
+#' sf_remove(LETTERS, "A")
+#'
+#' sf_remove(paste0(LETTERS, collapse = ""), "A")
+#'
+#' @autoglobal
+#'
 #' @export
 sf_remove <- \(s, p) stringfish::sf_gsub(s, p, "", nthreads = 4L)
 
-#' Sort Order
-#' @param x vector
+#' Sort and Order Vector
+#'
+#' @param x [character] vector
+#'
 #' @returns vector
+#'
+#' @examples
+#' (x <- sample(c(LETTERS, 0:9), size = 10))
+#'
+#' sort_order(x)
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
 sort_order <- \(x) {
 
   sort <- stringr::str_sort(x, numeric = TRUE)
-  alph <- stringr::str_extract_all(sort, stringr::regex("[A-Z]"))
-  numb <- stringr::str_extract_all(sort, stringr::regex("[0-9]"))
-  alph <- purrr::list_c(alph)
-  numb <- purrr::list_c(numb)
+
+  alph <- purrr::list_c(
+    stringr::str_extract_all(
+      sort,
+      stringr::regex("[A-Z]")
+      )
+    )
+
+  numb <- purrr::list_c(
+    stringr::str_extract_all(
+      sort, stringr::regex("[0-9]")
+      )
+    )
 
   paste0(
     paste0(alph, collapse = ""),
@@ -113,39 +214,23 @@ sort_order <- \(x) {
   )
 }
 
-#' Lump Like Vectors Together
-#' @param x vector
-#' @returns vector
-#' @autoglobal
-#' @keywords internal
-#' @export
-lump <- function(x, threshold = 3) {
-
-  stopifnot(is.numeric(x))
-
-  xo <- order(x)
-
-  xs <- x[xo]
-
-  dlag <- abs(c(0, xs[-1] - xs[seq_along(xs) - 1]))
-
-  bi <- ifelse(dlag >= threshold, 1, 0)
-
-  id <- cumsum(bi) + 1
-
-  id[xo]
-}
-
 #' Convert Letters to Integers
-#' @param x vector of letters
+#'
+#' @param x [vector] of letters
+#'
 #' @examples
 #' letters_to_numbers(LETTERS)
+#'
 #' @returns vector of integers
+#'
 #' @importFrom stats setNames
+#'
 #' @autoglobal
-#' @keywords internal
+#'
 #' @export
 letters_to_numbers <- \(x) {
+
+  stopifnot(is.character(x))
 
   unname(
     setNames(

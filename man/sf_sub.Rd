@@ -19,4 +19,7 @@ vector
 \description{
 Subset Vector by Range
 }
-\keyword{internal}
+\examples{
+sf_sub(random_hcpcs(2), 1, 2)
+
+}

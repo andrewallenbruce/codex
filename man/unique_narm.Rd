@@ -15,4 +15,7 @@ vector
 \description{
 Unique Values with NAs Removed
 }
-\keyword{internal}
+\examples{
+unique_narm(c("A", NA, "A", 1))
+
+}

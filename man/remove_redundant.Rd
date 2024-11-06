@@ -9,7 +9,7 @@ remove_redundant(x, verbose = FALSE)
 \arguments{
 \item{x}{\if{html}{\out{<list>}} of vectors}
 
-\item{verbose}{\if{html}{\out{<logical>}} print output}
+\item{verbose}{\if{html}{\out{<logical>}} print output; default \code{FALSE}}
 }
 \value{
 \if{html}{\out{<list>}} of vectors

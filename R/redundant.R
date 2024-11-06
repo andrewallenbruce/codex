@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @autoglobal
-contrast <- rr <- \(long, short) {
+contrast <- \(long, short) {
 
   if (empty(long))  return(character(0))
 
@@ -26,20 +26,23 @@ contrast <- rr <- \(long, short) {
     sf_sub(
       x = long,
       i = 1,
-      z = unique_vlength(short)) %!in% short]
+      z = unique_vlen(short)) %!in% short]
 }
 
 #' Alias for `contrast()`
-#' @inherit contrast
-#' @param ... arguments passed to `contrast()`
+#'
+#' @inheritDotParams contrast
+#'
 #' @export
+#'
 #' @autoglobal
 rr <- \(...) contrast(...)
 
 #' Remove Redundant Characters
 #'
 #' @param x <list> of vectors
-#' @param verbose <logical> print output
+#'
+#' @param verbose <logical> print output; default `FALSE`
 #'
 #' @returns <list> of vectors
 #'

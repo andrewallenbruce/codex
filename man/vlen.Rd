@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{vlen}
 \alias{vlen}
-\title{Lengths}
+\title{Lengths of Vector}
 \usage{
 vlen(x)
 }
@@ -13,6 +13,9 @@ vlen(x)
 vector
 }
 \description{
-Lengths
+Lengths of Vector
 }
-\keyword{internal}
+\examples{
+random_hcpcs(5) |> vlen()
+
+}

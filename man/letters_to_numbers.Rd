@@ -7,7 +7,7 @@
 letters_to_numbers(x)
 }
 \arguments{
-\item{x}{vector of letters}
+\item{x}{\link{vector} of letters}
 }
 \value{
 vector of integers
@@ -17,5 +17,5 @@ Convert Letters to Integers
 }
 \examples{
 letters_to_numbers(LETTERS)
+
 }
-\keyword{internal}

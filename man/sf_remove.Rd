@@ -9,7 +9,7 @@ sf_remove(s, p)
 \arguments{
 \item{s}{subject}
 
-\item{p}{pattern}
+\item{p}{regex pattern}
 }
 \value{
 vector
@@ -17,4 +17,9 @@ vector
 \description{
 Remove by Regex
 }
-\keyword{internal}
+\examples{
+sf_remove(LETTERS, "A")
+
+sf_remove(paste0(LETTERS, collapse = ""), "A")
+
+}
