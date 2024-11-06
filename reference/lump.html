@@ -46,22 +46,22 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector</p></dd>
+<dd><p><numeric> vector</numeric></p></dd>
 
 
 <dt id="arg-threshold">threshold<a class="anchor" aria-label="anchor" href="#arg-threshold"></a></dt>
-<dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> threshold; default is <code>3</code></p></dd>
+<dd><p><numeric> threshold; default is <code>3</code></numeric></p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector</p>
+    <p><numeric> vector</numeric></p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">lump</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in stopifnot(is.numeric(x), is.numeric(threshold), ):</span> argument is missing, with no default</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">lump</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">8</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 1 1 1 2 2 2 3</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
