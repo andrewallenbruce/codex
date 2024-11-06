@@ -31,6 +31,7 @@ contrast <- \(long, short) {
 
 #' Alias for `contrast()`
 #'
+#' @inherit contrast
 #' @inheritDotParams contrast
 #'
 #' @export

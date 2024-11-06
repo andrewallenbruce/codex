@@ -10,7 +10,7 @@ jaccard(x, y)
 \item{x, y}{vectors representing the two sets.}
 }
 \value{
-\link{numeric} value
+\if{html}{\out{<numeric>}} value
 }
 \description{
 Calculate the Jaccard index between two sets.

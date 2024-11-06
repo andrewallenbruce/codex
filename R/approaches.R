@@ -1,23 +1,23 @@
 #' Lump Like Vectors Together
 #'
-#' @param x [numeric] vector
+#' @param x <numeric> vector
 #'
-#' @param threshold [numeric] threshold; default is `3`
+#' @param threshold <numeric> threshold; default is `3`
 #'
 #' @examples
-#' lump(1:3, 5:8)
+#' lump(c(1:3, 5, 8:10, 15))
 #'
-#' @returns [numeric] vector
+#' @returns <numeric> vector
 #'
 #' @autoglobal
 #'
 #' @export
-lump <- function(x, threshold = 3) {
+lump <- \(x, threshold = 3) {
 
-  stopifnot(
-    is.numeric(x),
-    is.numeric(threshold),
-  )
+  stopifnot(exprs = {
+    is.numeric(x)
+    is.numeric(threshold)
+  })
 
   xo <- order(x)
 
@@ -42,7 +42,7 @@ lump <- function(x, threshold = 3) {
 #'
 #' @param x,y vectors representing the two sets.
 #'
-#' @returns [numeric] value
+#' @returns <numeric> value
 #'
 #' @examples
 #' jaccard(c(1, 2, 3), c(2, 3, 4))
@@ -56,15 +56,11 @@ lump <- function(x, threshold = 3) {
 #' @export
 jaccard <- function(x, y) {
 
-  # Calculate sets intersection
   intersection <- length(intersect(x, y))
 
-  # Calculate sets union
   union <- length(x) + length(y) - intersection
 
-  # If both sets empty, no similarity
   if (union == 0) return(0)
 
-  # Calculate Jaccard index
   intersection / union
 }

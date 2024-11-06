@@ -177,6 +177,103 @@ sf_extract <- \(s, p) s[sf_detect(s, p)]
 #' @export
 sf_remove <- \(s, p) stringfish::sf_gsub(s, p, "", nthreads = 4L)
 
+#' Collapse a vector to length 1
+#'
+#' @param ... A split `<chr>` vector
+#'
+#' @returns A collapsed `<chr>` string
+#'
+#' @examples
+#' smush(c("X", "Y", "Z"))
+#'
+#' smush(random_hcpcs(2))
+#'
+#' @autoglobal
+#'
+#' @export
+smush <- \(...) paste0(..., collapse = "")
+
+#' Unlist with no names
+#'
+#' @param x A named or unnamed `<list>`
+#'
+#' @returns An unnamed `<chr>` vector
+#'
+#' @examples
+#' delist(list(x = "XYZ"))
+#'
+#' delist(list("XYZ"))
+#'
+#' @autoglobal
+#'
+#' @export
+delist <- \(x) unlist(x, use.names = FALSE)
+
+#' Delist, Unname and Split a String
+#'
+#' @param x `<chr>` string or named `<list>` of `<chr>` strings
+#'
+#' @returns An unnamed `<list>` of split `<chr>` vectors
+#'
+#' @examples
+#' # unnamed vector
+#' splits("XYZ")
+#'
+#' # named vector
+#' splits(c(x = "XYZ"))
+#'
+#' # unnamed list with one element
+#' splits(list("XYZ"))
+#'
+#' # unnamed list with multiple elements
+#' splits(list("YYY", "ZZZ"))
+#'
+#' # named list with one element
+#' splits(list(x = "XYZ"))
+#'
+#' # named list with multiple elements
+#' splits(list(x = "YYY", xx = "ZZZ"))
+#'
+#' @autoglobal
+#'
+#' @export
+splits <- \(x) {
+
+  res <- strsplit(delist(x), "")
+
+  if (length(res) == 1) return(res[[1]])
+
+  res
+}
+
+#' Wrap A String in Brackets
+#'
+#' @param x `<chr>` string
+#'
+#' @returns `<chr>` string
+#'
+#' @examples
+#' bracket("XYZ")
+#'
+#' @autoglobal
+#'
+#' @export
+bracket <- \(x) paste0(r"--{[}--", x, r"--{]}--")
+
+#' Wrap A String in Parentheses
+#'
+#' @param x `<chr>` string
+#'
+#' @returns `<chr>` string
+#'
+#' @examples
+#' parent("XYZ")
+#'
+#' @autoglobal
+#'
+#' @export
+parent <- \(x) paste0(r"--{(}--", x, r"--{)}--")
+
 #' Sort and Order Vector
 #'
 #' @param x [character] vector
@@ -208,10 +305,10 @@ sort_order <- \(x) {
       )
     )
 
-  paste0(
-    paste0(alph, collapse = ""),
-    paste0(numb, collapse = "")
-  )
+  smush(
+    smush(alph),
+    smush(numb)
+    )
 }
 
 #' Convert Letters to Integers
