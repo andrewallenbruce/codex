@@ -28,7 +28,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Lump Like Vectors Together</h1>
-      <small class="dont-index">Source: <a href="https://github.com/andrewallenbruce/codex/blob/master/R/helpers.R" class="external-link"><code>R/helpers.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/andrewallenbruce/codex/blob/master/R/approaches.R" class="external-link"><code>R/approaches.R</code></a></small>
       <div class="d-none name"><code>lump.Rd</code></div>
     </div>
 
@@ -46,14 +46,25 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>vector</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector</p></dd>
+
+
+<dt id="arg-threshold">threshold<a class="anchor" aria-label="anchor" href="#arg-threshold"></a></dt>
+<dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> threshold; default is <code>3</code></p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>vector</p>
+    <p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">lump</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in stopifnot(is.numeric(x), is.numeric(threshold), ):</span> argument is missing, with no default</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
