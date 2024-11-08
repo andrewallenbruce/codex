@@ -46,38 +46,46 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p><character> vector</character></p></dd>
+<dd><p><code>&lt;character&gt;</code> vector</p></dd>
 
 
 <dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
-<dd><p><character> vector</character></p></dd>
+<dd><p><code>&lt;character&gt;</code> vector</p></dd>
 
 
 <dt id="arg-i">i<a class="anchor" aria-label="anchor" href="#arg-i"></a></dt>
-<dd><p><integer> index start</integer></p></dd>
+<dd><p><code>&lt;integer&gt;</code> index start</p></dd>
 
 
 <dt id="arg-z">z<a class="anchor" aria-label="anchor" href="#arg-z"></a></dt>
-<dd><p><integer> index end</integer></p></dd>
+<dd><p><code>&lt;integer&gt;</code> index end</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><character> vector</character></p>
+    <p><code>&lt;character&gt;</code> vector</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="random_hcpcs.html">random_hcpcs</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0741T"</span>, <span class="st">"E0628"</span>, <span class="st">"L4387"</span>, <span class="st">"0360T"</span>, <span class="st">"1127F"</span>, <span class="st">"0002M"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">end</span> <span class="op">&lt;-</span> <span class="fu"><a href="sf_extract.html">sf_extract</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">x5</span>, <span class="st">"[A-Z]$"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in x$x5:</span> $ operator is invalid for atomic vectors</span>
+<span class="r-in"><span><span class="op">(</span><span class="va">end</span> <span class="op">&lt;-</span> <span class="fu"><a href="sf_extract.html">sf_extract</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"[A-Z]$"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "0741T" "0360T" "1127F" "0002M"</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">beg</span> <span class="op">&lt;-</span> <span class="fu"><a href="smush.html">smush</a></span><span class="op">(</span><span class="fu"><a href="take_at.html">take_at</a></span><span class="op">(</span><span class="va">end</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="sf_remove.html">sf_remove</a></span><span class="op">(</span><span class="va">end</span>, <span class="st">"[A-Z]$"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Object not an Character Vector</span>
+<span class="r-in"><span><span class="op">(</span><span class="va">beg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="take_at.html">take_at</a></span><span class="op">(</span><span class="va">end</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="sf_remove.html">sf_remove</a></span><span class="op">(</span><span class="va">end</span>, <span class="st">"[A-Z]$"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "T0741" "T0360" "F1127" "M0002"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">split_at</span><span class="op">(</span>x <span class="op">=</span> <span class="va">end</span>, y <span class="op">=</span> <span class="va">beg</span>, i <span class="op">=</span> <span class="fl">1</span>, z <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'beg' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "1127F"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "0002M"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "0741T" "0360T"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
