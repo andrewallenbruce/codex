@@ -7,26 +7,26 @@
 split_at(x, y = x, i, z)
 }
 \arguments{
-\item{x}{\if{html}{\out{<character>}} vector}
+\item{x}{\verb{<character>} vector}
 
-\item{y}{\if{html}{\out{<character>}} vector}
+\item{y}{\verb{<character>} vector}
 
-\item{i}{\if{html}{\out{<integer>}} index start}
+\item{i}{\verb{<integer>} index start}
 
-\item{z}{\if{html}{\out{<integer>}} index end}
+\item{z}{\verb{<integer>} index end}
 }
 \value{
-\if{html}{\out{<character>}} vector
+\verb{<character>} vector
 }
 \description{
 Split Vector by Index Subset
 }
 \examples{
-x <- random_hcpcs(10)
+x <- c("0741T", "E0628", "L4387", "0360T", "1127F", "0002M")
 
-end <- sf_extract(x$x5, "[A-Z]$")
+(end <- sf_extract(x, "[A-Z]$"))
 
-beg <- smush(take_at(end, 5), sf_remove(end, "[A-Z]$"))
+(beg <- paste0(take_at(end, 5), sf_remove(end, "[A-Z]$")))
 
 split_at(x = end, y = beg, i = 1, z = 2)
 

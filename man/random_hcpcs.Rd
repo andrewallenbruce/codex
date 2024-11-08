@@ -7,10 +7,10 @@
 random_hcpcs(n = 10)
 }
 \arguments{
-\item{n}{\if{html}{\out{<integer>}} number of codes}
+\item{n}{\verb{<integer>} number of codes}
 }
 \value{
-\if{html}{\out{<character>}} vector
+\verb{<character>} vector
 }
 \description{
 Generate Random HCPCS Codes Vector

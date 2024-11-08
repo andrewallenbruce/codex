@@ -10,7 +10,7 @@ empty(x)
 \item{x}{vector}
 }
 \value{
-logical
+\verb{<logical>}
 }
 \description{
 Is Vector Empty?

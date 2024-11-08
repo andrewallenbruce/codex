@@ -7,10 +7,10 @@
 sf_convert(x)
 }
 \arguments{
-\item{x}{\if{html}{\out{<character>}} vector}
+\item{x}{\verb{<character>} vector}
 }
 \value{
-\if{html}{\out{<character>}} stringfish vector
+\verb{<character>} stringfish vector
 }
 \description{
 Convert string to stringfish

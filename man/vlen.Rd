@@ -10,7 +10,7 @@ vlen(x)
 \item{x}{vector}
 }
 \value{
-vector
+\verb{<integer>} vector
 }
 \description{
 Lengths of Vector

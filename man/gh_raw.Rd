@@ -7,10 +7,10 @@
 gh_raw(x)
 }
 \arguments{
-\item{x}{\verb{<chr>} string}
+\item{x}{\verb{<character>} string}
 }
 \value{
-\verb{<chr>} GitHub raw url
+\verb{<character>} GitHub raw url
 }
 \description{
 Return GitHub raw url

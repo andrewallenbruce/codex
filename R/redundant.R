@@ -1,10 +1,10 @@
 #' Contrast Redundant Characters
 #'
-#' @param long <character> vector
+#' @param long `<character>` vector
 #'
-#' @param short <character> vector
+#' @param short `<character>` vector
 #'
-#' @returns <character> vector
+#' @returns `<character>` vector
 #'
 #' @examples
 #' contrast(
@@ -32,6 +32,7 @@ contrast <- \(long, short) {
 #' Alias for `contrast()`
 #'
 #' @inherit contrast
+#'
 #' @inheritDotParams contrast
 #'
 #' @export
@@ -41,11 +42,11 @@ rr <- \(...) contrast(...)
 
 #' Remove Redundant Characters
 #'
-#' @param x <list> of vectors
+#' @param x `<list>` of vectors
 #'
-#' @param verbose <logical> print output; default `FALSE`
+#' @param verbose `<logical>` print output; default `FALSE`
 #'
-#' @returns <list> of vectors
+#' @returns `<list>` of vectors
 #'
 #' @examples
 #' random_hcpcs(15) |>

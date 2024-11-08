@@ -7,10 +7,10 @@
 split_1(x)
 }
 \arguments{
-\item{x}{\if{html}{\out{<character>}} vector}
+\item{x}{\verb{<character>} vector}
 }
 \value{
-\if{html}{\out{<character>}} vector
+\verb{<character>} vector
 }
 \description{
 Split Vector

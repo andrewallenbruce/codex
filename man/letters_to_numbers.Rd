@@ -7,10 +7,10 @@
 letters_to_numbers(x)
 }
 \arguments{
-\item{x}{\link{vector} of letters}
+\item{x}{\verb{<character>} vector of letters}
 }
 \value{
-vector of integers
+\verb{<integer>} vector
 }
 \description{
 Convert Letters to Integers

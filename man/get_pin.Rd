@@ -7,12 +7,12 @@
 get_pin(pin, ...)
 }
 \arguments{
-\item{pin}{\verb{<chr>} string name of pinned dataset}
+\item{pin}{\verb{<character>} string name of pinned dataset}
 
 \item{...}{additional arguments passed to \code{mount_board()}}
 }
 \value{
-\verb{<tibble>} or \verb{<data.frame>}
+\verb{<data.frame>}
 }
 \description{
 Get a pinned dataset from a \link[pins:pins-package]{pins} board

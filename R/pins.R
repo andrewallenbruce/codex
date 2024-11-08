@@ -1,8 +1,8 @@
 #' Return GitHub raw url
 #'
-#' @param x `<chr>` string
+#' @param x `<character>` string
 #'
-#' @returns `<chr>` GitHub raw url
+#' @returns `<character>` GitHub raw url
 #'
 #' @examples
 #' gh_raw("andrewbruce/example/main/inst/pins/")
@@ -18,9 +18,9 @@ gh_raw <- function(x) {
 
 #' Mount [pins][pins::pins-package] board
 #'
-#' @param source `<chr>` `"local"` or `"remote"`
+#' @param source `<character>`; `"local"` or `"remote"`
 #'
-#' @param package `<chr>` package name
+#' @param package `<character>` package name
 #'
 #' @returns `<pins_board_folder>` or `<pins_board_url>`
 #'
@@ -47,11 +47,11 @@ mount_board <- function(source = c("local", "remote"), package = "codex") {
 
 #' Get a pinned dataset from a [pins][pins::pins-package] board
 #'
-#' @param pin `<chr>` string name of pinned dataset
+#' @param pin `<character>` string name of pinned dataset
 #'
 #' @param ... additional arguments passed to `mount_board()`
 #'
-#' @returns `<tibble>` or `<data.frame>`
+#' @returns `<data.frame>`
 #'
 #' @autoglobal
 #'

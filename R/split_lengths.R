@@ -1,10 +1,10 @@
 #' Split Character Vector by Lengths
 #'
-#' @param x <character> vector
+#' @param x `<character>` vector
 #'
-#' @param verbose <logical> print output
+#' @param verbose `<logical>` print output
 #'
-#' @returns <list> of character vectors
+#' @returns `<list>` of character vectors
 #'
 #' @examples
 #' random_hcpcs(5) |>
@@ -39,14 +39,13 @@ split_lengths <- function(x, verbose = FALSE) {
 
 #' Split Character Vector at End
 #'
-#' @param x <character> vector
+#' @param x `<character>` vector
 #'
-#' @returns <list> of character vectors
+#' @returns `<list>` of character vectors
 #'
 #' @examples
-#' x <- random_hcpcs(10)
-#'
-#' split_end(x$x5)
+#' random_hcpcs(10) |>
+#'    split_end()
 #'
 #' @autoglobal
 #'
@@ -70,11 +69,11 @@ split_end <- \(x) {
 
 #' Split Character Vector by Lengths
 #'
-#' @param x <character> vector
+#' @param x `<character>` vector
 #'
-#' @param verbose <logical> print output
+#' @param verbose `<logical>` print output
 #'
-#' @returns <list> of character vectors
+#' @returns `<list>` of character vectors
 #'
 #' @examples
 #' random_hcpcs(5) |>
@@ -82,7 +81,7 @@ split_end <- \(x) {
 #'    remove_redundant() |>
 #'    split_first()
 #'
-#' @importFrom collapse %!in%
+#' @importFrom collapse %!in% .c
 #'
 #' @autoglobal
 #'

@@ -7,12 +7,12 @@
 split_lengths(x, verbose = FALSE)
 }
 \arguments{
-\item{x}{\if{html}{\out{<character>}} vector}
+\item{x}{\verb{<character>} vector}
 
-\item{verbose}{\if{html}{\out{<logical>}} print output}
+\item{verbose}{\verb{<logical>} print output}
 }
 \value{
-\if{html}{\out{<list>}} of character vectors
+\verb{<list>} of character vectors
 }
 \description{
 Split Character Vector by Lengths

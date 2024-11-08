@@ -7,10 +7,10 @@
 group_3(x)
 }
 \arguments{
-\item{x}{\if{html}{\out{<list>}} of character vectors}
+\item{x}{\verb{<list>} of character vectors}
 }
 \value{
-\if{html}{\out{<list>}} of character vectors
+\verb{<list>} of character vectors
 }
 \description{
 Group 3

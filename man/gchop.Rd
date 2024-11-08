@@ -7,12 +7,12 @@
 gchop(v, g)
 }
 \arguments{
-\item{v}{\if{html}{\out{<character>}} vector}
+\item{v}{\verb{<character>} vector}
 
-\item{g}{\if{html}{\out{<integer>}} group}
+\item{g}{\verb{<integer>} group}
 }
 \value{
-a \if{html}{\out{<list>}}
+\verb{<list>}
 }
 \description{
 Chop Vector by Group

@@ -10,12 +10,12 @@ rr(...)
 \item{...}{
   Arguments passed on to \code{\link[=contrast]{contrast}}
   \describe{
-    \item{\code{long}}{\if{html}{\out{<character>}} vector}
-    \item{\code{short}}{\if{html}{\out{<character>}} vector}
+    \item{\code{long}}{\verb{<character>} vector}
+    \item{\code{short}}{\verb{<character>} vector}
   }}
 }
 \value{
-\if{html}{\out{<character>}} vector
+\verb{<character>} vector
 }
 \description{
 Alias for \code{contrast()}

@@ -10,7 +10,7 @@ max_vlen(x)
 \item{x}{vector}
 }
 \value{
-integer
+\verb{<integer>} vector
 }
 \description{
 Maximum Vector Length

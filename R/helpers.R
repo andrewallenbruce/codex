@@ -2,7 +2,7 @@
 #'
 #' @param x vector
 #'
-#' @returns vector
+#' @returns `<integer>` vector
 #'
 #' @examples
 #' random_hcpcs(5) |> vlen()
@@ -16,7 +16,7 @@ vlen <- \(x) collapse::vlengths(x, use.names = FALSE)
 #'
 #' @param x vector
 #'
-#' @returns vector
+#' @returns `<integer>` vector
 #'
 #' @examples
 #' random_hcpcs(5) |> uniq_vlen()
@@ -44,7 +44,7 @@ uniq_narm <- \(x) collapse::funique(collapse::na_rm(x))
 #'
 #' @param x vector
 #'
-#' @returns integer
+#' @returns `<integer>` vector
 #'
 #' @examples
 #' random_hcpcs(5) |> max_vlen()
@@ -58,7 +58,7 @@ max_vlen <- \(x) collapse::fmax(vlen(x))
 #'
 #' @param x vector
 #'
-#' @returns logical
+#' @returns `<logical>`
 #'
 #' @examples
 #' empty(character(0))
@@ -78,11 +78,11 @@ empty <- \(x) vctrs::vec_is_empty(x)
 
 #' Chop Vector by Group
 #'
-#' @param v <character> vector
+#' @param v `<character>` vector
 #'
-#' @param g <integer> group
+#' @param g `<integer>` group
 #'
-#' @returns a <list>
+#' @returns `<list>`
 #'
 #' @examples
 #' (v <- random_hcpcs(2))
@@ -97,13 +97,13 @@ gchop <- \(v, g) vctrs::vec_chop(v, sizes = vctrs::vec_run_sizes(g))
 
 #' Subset Vector by Range
 #'
-#' @param x <character> vector
+#' @param x `<character>` vector
 #'
-#' @param i <integer> index start
+#' @param i `<integer>` index start
 #'
-#' @param z <integer> index end
+#' @param z `<integer>` index end
 #'
-#' @returns <character> vector
+#' @returns `<character>` vector
 #'
 #' @examples
 #' sf_sub(random_hcpcs(2), 1, 2)
@@ -115,9 +115,9 @@ sf_sub <- \(x, i = 1, z) stringfish::sf_substr(x, start = i, stop = z, nthreads 
 
 #' Convert string to stringfish
 #'
-#' @param x <character> vector
+#' @param x `<character>` vector
 #'
-#' @returns <character> stringfish vector
+#' @returns `<character>` stringfish vector
 #'
 #' @examples
 #' sf_convert(random_hcpcs(500))
@@ -129,11 +129,11 @@ sf_convert <- \(x) stringfish::convert_to_sf(x)
 
 #' Subset Vector at Index
 #'
-#' @param x <character> vector
+#' @param x `<character>` vector
 #'
-#' @param i <integer> index
+#' @param i `<integer>` index
 #'
-#' @returns <character> vector
+#' @returns `<character>` vector
 #'
 #' @examples
 #' take_at(random_hcpcs(2), 2)
@@ -145,22 +145,22 @@ take_at <- \(x, i = 1) sf_sub(x, i = i, z = i)
 
 #' Split Vector by Index Subset
 #'
-#' @param x <character> vector
+#' @param x `<character>` vector
 #'
-#' @param y <character> vector
+#' @param y `<character>` vector
 #'
-#' @param i <integer> index start
+#' @param i `<integer>` index start
 #'
-#' @param z <integer> index end
+#' @param z `<integer>` index end
 #'
-#' @returns <character> vector
+#' @returns `<character>` vector
 #'
 #' @examples
-#' x <- random_hcpcs(10)
+#' x <- c("0741T", "E0628", "L4387", "0360T", "1127F", "0002M")
 #'
-#' end <- sf_extract(x$x5, "[A-Z]$")
+#' (end <- sf_extract(x, "[A-Z]$"))
 #'
-#' beg <- smush(take_at(end, 5), sf_remove(end, "[A-Z]$"))
+#' (beg <- paste0(take_at(end, 5), sf_remove(end, "[A-Z]$")))
 #'
 #' split_at(x = end, y = beg, i = 1, z = 2)
 #'
@@ -171,9 +171,9 @@ split_at <- \(x, y = x, i, z) collapse::rsplit(x, sf_sub(y, i, z), use.names = F
 
 #' Split Vector
 #'
-#' @param x <character> vector
+#' @param x `<character>` vector
 #'
-#' @returns <character> vector
+#' @returns `<character>` vector
 #'
 #' @examples
 #' split_1(random_hcpcs(10))
@@ -185,11 +185,11 @@ split_1 <- \(x) split_at(x, y = x, i = 1, z = 1)
 
 #' Detect by Regex
 #'
-#' @param s <character> vector
+#' @param s `<character>` vector
 #'
-#' @param p <character> regex pattern
+#' @param p `<character>` regex pattern
 #'
-#' @returns <logical> vector
+#' @returns `<logical>` vector
 #'
 #' @examples
 #' sf_detect(random_hcpcs(), "[A-Z]{1}")
@@ -201,11 +201,11 @@ sf_detect <- \(s, p) stringfish::sf_grepl(s, p, nthreads = 4L)
 
 #' Extract by Regex
 #'
-#' @param s <character> vector
+#' @param s `<character>` vector
 #'
-#' @param p <character> regex pattern
+#' @param p `<character>` regex pattern
 #'
-#' @returns <character> vector
+#' @returns `<character>` vector
 #'
 #' @examples
 #' sf_extract(random_hcpcs(), "[A-Z]{1}")
@@ -366,12 +366,12 @@ sort_order <- \(x) {
 
 #' Convert Letters to Integers
 #'
-#' @param x [vector] of letters
+#' @param x `<character>` vector of letters
 #'
 #' @examples
 #' letters_to_numbers(LETTERS)
 #'
-#' @returns vector of integers
+#' @returns `<integer>` vector
 #'
 #' @importFrom stats setNames
 #'

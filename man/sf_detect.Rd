@@ -7,12 +7,12 @@
 sf_detect(s, p)
 }
 \arguments{
-\item{s}{\if{html}{\out{<character>}} vector}
+\item{s}{\verb{<character>} vector}
 
-\item{p}{\if{html}{\out{<character>}} regex pattern}
+\item{p}{\verb{<character>} regex pattern}
 }
 \value{
-\if{html}{\out{<logical>}} vector
+\verb{<logical>} vector
 }
 \description{
 Detect by Regex

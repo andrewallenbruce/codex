@@ -7,17 +7,16 @@
 split_end(x)
 }
 \arguments{
-\item{x}{\if{html}{\out{<character>}} vector}
+\item{x}{\verb{<character>} vector}
 }
 \value{
-\if{html}{\out{<list>}} of character vectors
+\verb{<list>} of character vectors
 }
 \description{
 Split Character Vector at End
 }
 \examples{
-x <- random_hcpcs(10)
-
-split_end(x$x5)
+random_hcpcs(10) |>
+   split_end()
 
 }

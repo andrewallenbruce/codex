@@ -1,8 +1,8 @@
 #' Group 3
 #'
-#' @param x <list> of character vectors
+#' @param x `<list>` of character vectors
 #'
-#' @returns <list> of character vectors
+#' @returns `<list>` of character vectors
 #'
 #' @examples
 #' c("C75", "C97", "G02", "G04") |>

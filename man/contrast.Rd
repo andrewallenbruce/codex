@@ -7,12 +7,12 @@
 contrast(long, short)
 }
 \arguments{
-\item{long}{\if{html}{\out{<character>}} vector}
+\item{long}{\verb{<character>} vector}
 
-\item{short}{\if{html}{\out{<character>}} vector}
+\item{short}{\verb{<character>} vector}
 }
 \value{
-\if{html}{\out{<character>}} vector
+\verb{<character>} vector
 }
 \description{
 Contrast Redundant Characters

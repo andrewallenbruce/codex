@@ -7,9 +7,9 @@
 mount_board(source = c("local", "remote"), package = "codex")
 }
 \arguments{
-\item{source}{\verb{<chr>} \code{"local"} or \code{"remote"}}
+\item{source}{\verb{<character>}; \code{"local"} or \code{"remote"}}
 
-\item{package}{\verb{<chr>} package name}
+\item{package}{\verb{<character>} package name}
 }
 \value{
 \verb{<pins_board_folder>} or \verb{<pins_board_url>}

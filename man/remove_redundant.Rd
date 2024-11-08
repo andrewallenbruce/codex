@@ -7,12 +7,12 @@
 remove_redundant(x, verbose = FALSE)
 }
 \arguments{
-\item{x}{\if{html}{\out{<list>}} of vectors}
+\item{x}{\verb{<list>} of vectors}
 
-\item{verbose}{\if{html}{\out{<logical>}} print output; default \code{FALSE}}
+\item{verbose}{\verb{<logical>} print output; default \code{FALSE}}
 }
 \value{
-\if{html}{\out{<list>}} of vectors
+\verb{<list>} of vectors
 }
 \description{
 Remove Redundant Characters

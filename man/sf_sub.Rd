@@ -7,14 +7,14 @@
 sf_sub(x, i = 1, z)
 }
 \arguments{
-\item{x}{\if{html}{\out{<character>}} vector}
+\item{x}{\verb{<character>} vector}
 
-\item{i}{\if{html}{\out{<integer>}} index start}
+\item{i}{\verb{<integer>} index start}
 
-\item{z}{\if{html}{\out{<integer>}} index end}
+\item{z}{\verb{<integer>} index end}
 }
 \value{
-\if{html}{\out{<character>}} vector
+\verb{<character>} vector
 }
 \description{
 Subset Vector by Range
