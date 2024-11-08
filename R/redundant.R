@@ -26,7 +26,7 @@ contrast <- \(long, short) {
     sf_sub(
       x = long,
       i = 1,
-      z = unique_vlen(short)) %!in% short]
+      z = uniq_vlen(short)) %!in% short]
 }
 
 #' Alias for `contrast()`

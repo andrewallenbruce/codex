@@ -24,4 +24,6 @@ empty(NULL)
 
 empty(NA)
 
+empty(list())
+
 }

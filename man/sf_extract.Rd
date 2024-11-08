@@ -7,12 +7,12 @@
 sf_extract(s, p)
 }
 \arguments{
-\item{s}{subject}
+\item{s}{\if{html}{\out{<character>}} vector}
 
-\item{p}{regex pattern}
+\item{p}{\if{html}{\out{<character>}} regex pattern}
 }
 \value{
-vector
+\if{html}{\out{<character>}} vector
 }
 \description{
 Extract by Regex

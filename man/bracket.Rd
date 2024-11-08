@@ -7,10 +7,10 @@
 bracket(x)
 }
 \arguments{
-\item{x}{\verb{<chr>} string}
+\item{x}{\verb{<character>} string}
 }
 \value{
-\verb{<chr>} string
+\verb{<character>} string
 }
 \description{
 Wrap A String in Brackets

@@ -7,10 +7,10 @@
 smush(...)
 }
 \arguments{
-\item{...}{A split \verb{<chr>} vector}
+\item{...}{\verb{<character>} string}
 }
 \value{
-A collapsed \verb{<chr>} string
+collapsed \verb{<character>} string
 }
 \description{
 Collapse a vector to length 1

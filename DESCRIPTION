@@ -11,7 +11,9 @@ BugReports: https://github.com/andrewallenbruce/codex/issues
 Depends: 
     R (>= 4.1.0)
 Imports:
+    cheapr,
     collapse,
+    data.table,
     glue,
     purrr,
     rlang,

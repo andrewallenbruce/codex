@@ -7,12 +7,12 @@
 take_at(x, i = 1)
 }
 \arguments{
-\item{x}{vector}
+\item{x}{\if{html}{\out{<character>}} vector}
 
-\item{i}{index}
+\item{i}{\if{html}{\out{<integer>}} index}
 }
 \value{
-vector
+\if{html}{\out{<character>}} vector
 }
 \description{
 Subset Vector at Index

@@ -7,10 +7,10 @@
 sort_order(x)
 }
 \arguments{
-\item{x}{\link{character} vector}
+\item{x}{\verb{<character>} vector}
 }
 \value{
-vector
+\verb{<character>} vector
 }
 \description{
 Sort and Order Vector

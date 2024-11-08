@@ -7,12 +7,12 @@
 sf_remove(s, p)
 }
 \arguments{
-\item{s}{subject}
+\item{s}{\verb{<character>} vector}
 
-\item{p}{regex pattern}
+\item{p}{\verb{<character>} regex pattern}
 }
 \value{
-vector
+\verb{<character>} vector
 }
 \description{
 Remove by Regex

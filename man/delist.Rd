@@ -7,10 +7,10 @@
 delist(x)
 }
 \arguments{
-\item{x}{A named or unnamed \verb{<list>}}
+\item{x}{Named or unnamed \verb{<list>}}
 }
 \value{
-An unnamed \verb{<chr>} vector
+Unnamed \verb{<character>} vector
 }
 \description{
 Unlist with no names

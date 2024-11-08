@@ -7,10 +7,10 @@
 splits(x)
 }
 \arguments{
-\item{x}{\verb{<chr>} string or named \verb{<list>} of \verb{<chr>} strings}
+\item{x}{\verb{<character>} string or named \verb{<list>}}
 }
 \value{
-An unnamed \verb{<list>} of split \verb{<chr>} vectors
+Unnamed \verb{<list>} of split \verb{<character>} vectors
 }
 \description{
 Delist, Unname and Split a String
