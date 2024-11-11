@@ -1,3 +1,17 @@
+#' !is.na(x)
+#'
+#' @param x vector
+#'
+#' @returns vector
+#'
+#' @examples
+#' c(NA, "AA") |> not_na()
+#'
+#' @autoglobal
+#'
+#' @export
+not_na <- \(x) !cheapr::is_na(x)
+
 #' Lengths of Vector
 #'
 #' @param x vector

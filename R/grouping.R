@@ -12,7 +12,6 @@
 #'    group_3()
 #'
 #' @importFrom collapse %!in% get_elem fgroup_by fmutate fungroup fcount fsubset join groupid
-#' @importFrom cheapr is_na
 #' @importFrom purrr map
 #' @importFrom data.table data.table
 #'
@@ -53,7 +52,7 @@ group_3 <- function(x) {
       join(last, on = c("a1", "a2"),
            how = "right",
            verbose = 0) |>
-      fsubset(!is_na(N))
+      fsubset(not_na(N))
 
     rest <- fsubset(idx, code %!in% c(lone[["code"]], last[["code"]]))
 
