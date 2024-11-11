@@ -10,7 +10,7 @@ not_na(x)
 \item{x}{vector}
 }
 \value{
-vector
+\verb{<logical>} vector
 }
 \description{
 !is.na(x)

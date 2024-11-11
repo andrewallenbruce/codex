@@ -11,7 +11,7 @@
 #'    split_first() |>
 #'    group_3()
 #'
-#' @importFrom collapse %!in% get_elem fgroup_by fmutate fungroup fcount fsubset join groupid
+#' @importFrom collapse %!in% fgroup_by fmutate fungroup fcount fsubset join groupid
 #' @importFrom purrr map
 #' @importFrom data.table data.table
 #'
@@ -20,7 +20,7 @@
 #' @autoglobal
 group_3 <- function(x) {
 
-  x <- get_elem(x, "x3")
+  x <- getem(x, "x3")
 
   if (empty(x)) return(x)
 

@@ -2,7 +2,7 @@
 #'
 #' @param x vector
 #'
-#' @returns vector
+#' @returns `<logical>` vector
 #'
 #' @examples
 #' c(NA, "AA") |> not_na()
@@ -11,6 +11,22 @@
 #'
 #' @export
 not_na <- \(x) !cheapr::is_na(x)
+
+#' Get named element from list
+#'
+#' @param ll named `<list>`
+#'
+#' @param nm `<character>` element name
+#'
+#' @returns named `<list>` element
+#'
+#' @examples
+#' list(x1 = NA, x2 = "AA") |> getem("x2")
+#'
+#' @autoglobal
+#'
+#' @export
+getem <- \(ll, nm) collapse::get_elem(l = ll, elem = nm, regex = TRUE)
 
 #' Lengths of Vector
 #'
