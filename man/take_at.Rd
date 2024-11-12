@@ -4,12 +4,12 @@
 \alias{take_at}
 \title{Subset Vector at Index}
 \usage{
-take_at(x, i = 1)
+take_at(x, start = 1)
 }
 \arguments{
 \item{x}{\verb{<character>} vector}
 
-\item{i}{\verb{<integer>} index}
+\item{start}{\verb{<integer>} index}
 }
 \value{
 \verb{<character>} vector

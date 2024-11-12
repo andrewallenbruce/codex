@@ -4,16 +4,16 @@
 \alias{split_at}
 \title{Split Vector by Index Subset}
 \usage{
-split_at(x, y = x, i, z)
+split_at(x, y = x, start, stop)
 }
 \arguments{
 \item{x}{\verb{<character>} vector}
 
 \item{y}{\verb{<character>} vector; default is \code{x}}
 
-\item{i}{\verb{<integer>} index start}
+\item{start}{\verb{<integer>} index start}
 
-\item{z}{\verb{<integer>} index end}
+\item{stop}{\verb{<integer>} index end}
 }
 \value{
 \verb{<character>} vector
@@ -28,6 +28,6 @@ x <- c("0741T", "E0628", "L4387", "0360T", "1127F", "0002M")
 
 (beg <- paste0(take_at(end, 5), sf_remove(end, "[A-Z]$")))
 
-split_at(x = end, y = beg, i = 1, z = 2)
+split_at(x = end, y = beg, start = 1, stop = 2)
 
 }

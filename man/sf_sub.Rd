@@ -4,14 +4,14 @@
 \alias{sf_sub}
 \title{Subset Vector by Range}
 \usage{
-sf_sub(x, i = 1, z)
+sf_sub(x, start = 1, stop)
 }
 \arguments{
 \item{x}{\verb{<character>} vector}
 
-\item{i}{\verb{<integer>} index start; default is \code{1}}
+\item{start}{\verb{<integer>} index start; default is \code{1}}
 
-\item{z}{\verb{<integer>} index end}
+\item{stop}{\verb{<integer>} index end}
 }
 \value{
 \verb{<character>} vector

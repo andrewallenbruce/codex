@@ -20,7 +20,7 @@
 #' @autoglobal
 group_3 <- function(x) {
 
-  x <- getem(x, "x3")
+  x <- getelem(x, "x3")
 
   if (empty(x)) return(x)
 

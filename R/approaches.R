@@ -64,3 +64,28 @@ jaccard <- function(x, y) {
 
   intersection / union
 }
+
+#' Convert Letters to Integers
+#'
+#' @param x `<character>` vector of letters
+#'
+#' @examples
+#' letters_to_numbers(LETTERS[1:5])
+#'
+#' @returns `<integer>` vector
+#'
+#' @importFrom stats setNames
+#'
+#' @autoglobal
+#'
+#' @export
+letters_to_numbers <- \(x) {
+
+  stopifnot(is.character(x))
+
+  unname(
+    setNames(
+      seq_along(LETTERS), LETTERS)[
+        sf_extract(x, "[A-Z]{1}")]
+  )
+}

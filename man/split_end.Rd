@@ -16,7 +16,10 @@ split_end(x)
 Split Character Vector at End
 }
 \examples{
-random_hcpcs(10) |>
-   split_end()
+x <- random_hcpcs(10) |>
+   split_lengths() |>
+   remove_redundant()
+
+split_end(x$x5)
 
 }

@@ -7,7 +7,7 @@
 random_hcpcs(n = 10)
 }
 \arguments{
-\item{n}{\verb{<integer>} number of codes}
+\item{n}{\verb{<integer>} number of codes; default is \code{10}}
 }
 \value{
 \verb{<character>} vector

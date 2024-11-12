@@ -26,4 +26,8 @@ empty(NA)
 
 empty(list())
 
+empty(list(character(0))
+
+empty(list(x = character(0))
+
 }

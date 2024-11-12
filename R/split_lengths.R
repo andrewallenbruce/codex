@@ -19,7 +19,7 @@ split_lengths <- function(x, verbose = FALSE) {
 
   x <- sf_remove(x, "\\*|\\s") |>
     uniq_narm() |>
-    stringr::str_sort()
+    strsort()
 
   l <- vlen(x)
 
@@ -44,8 +44,13 @@ split_lengths <- function(x, verbose = FALSE) {
 #' @returns `<list>` of character vectors
 #'
 #' @examples
-#' random_hcpcs(10) |>
-#'    split_end()
+#' x <- random_hcpcs(10) |>
+#'    split_lengths() |>
+#'    remove_redundant()
+#'
+#' split_end(x$x5)
+#'
+#' @importFrom glue glue
 #'
 #' @autoglobal
 #'
@@ -55,14 +60,14 @@ split_end <- \(x) {
   if (any(sf_detect(x, "[A-Z]$"))) {
 
     end <- sf_extract(x, "[A-Z]$")
-    beg <- glue::glue("{take_at(end, 5)}{sf_remove(end, '[A-Z]$')}")
+    beg <- glue("{take_at(end, 5)}{sf_remove(end, '[A-Z]$')}")
 
-    c(split_at(x = x[!sf_detect(x, "[A-Z]$")], i = 1, z = 1),
-      split_at(x = end, y = beg, i = 1, z = 2))
+    c(split_at(x = x[!sf_detect(x, "[A-Z]$")], start = 1, stop = 1),
+      split_at(x = end, y = beg, start = 1, stop = 2))
 
   } else {
 
-    split_at(x, i = 1, z = 1)
+    split_at(x, start = 1, stop = 1)
 
   }
 }
@@ -81,7 +86,7 @@ split_end <- \(x) {
 #'    remove_redundant() |>
 #'    split_first()
 #'
-#' @importFrom collapse %!in% .c
+#' @importFrom collapse %=% .c
 #'
 #' @autoglobal
 #'

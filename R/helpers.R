@@ -18,6 +18,20 @@
 #' @export
 iif_else <- \(x, yes, no) kit::iif(test = x, yes = yes, no = no, nThread = 4L)
 
+#' Parallel Sort wrapper using [kit::psort()]
+#'
+#' @param x `<character>` vector. If other, will default to [base::sort()]
+#'
+#' @returns `x` in sorted order
+#'
+#' @examples
+#' strsort(random_hcpcs())
+#'
+#' @autoglobal
+#'
+#' @export
+strsort <- \(x) kit::psort(x, nThread = 4L)
+
 #' Predicate to filter out NAs
 #'
 #' @param x vector
@@ -34,19 +48,21 @@ not_na <- \(x) !cheapr::is_na(x)
 
 #' Get named element from list
 #'
-#' @param ll named `<list>`
+#' @param l named `<list>`
 #'
-#' @param nm `<character>` element name
+#' @param nm `<character>` element name; can be a regex pattern
 #'
 #' @returns named `<list>` element
 #'
 #' @examples
-#' list(x1 = NA, x2 = "AA") |> getem("x2")
+#' list(x1 = NA, x2 = "AA") |> getelem("x2")
+#'
+#' list(x1 = NA, x2 = "AA") |> getelem("2$")
 #'
 #' @autoglobal
 #'
 #' @export
-getem <- \(ll, nm) collapse::get_elem(l = ll, elem = nm, regex = TRUE)
+getelem <- \(l, nm) collapse::get_elem(l = l, elem = nm, regex = TRUE)
 
 #' Lengths of Vector
 #'
@@ -121,6 +137,10 @@ max_vlen <- \(x) collapse::fmax(vlen(x))
 #'
 #' empty(list())
 #'
+#' empty(list(character(0))
+#'
+#' empty(list(x = character(0))
+#'
 #' @autoglobal
 #'
 #' @export
@@ -143,15 +163,15 @@ empty <- \(x) vctrs::vec_is_empty(x)
 #' @autoglobal
 #'
 #' @export
-gchop <- \(v, g) vctrs::vec_chop(v, sizes = vctrs::vec_run_sizes(g))
+gchop <- \(v, g) vctrs::vec_chop(x = v, sizes = vctrs::vec_run_sizes(g))
 
 #' Subset Vector by Range
 #'
 #' @param x `<character>` vector
 #'
-#' @param i `<integer>` index start; default is `1`
+#' @param start `<integer>` index start; default is `1`
 #'
-#' @param z `<integer>` index end
+#' @param stop `<integer>` index end
 #'
 #' @returns `<character>` vector
 #'
@@ -161,7 +181,7 @@ gchop <- \(v, g) vctrs::vec_chop(v, sizes = vctrs::vec_run_sizes(g))
 #' @autoglobal
 #'
 #' @export
-sf_sub <- \(x, i = 1, z) stringfish::sf_substr(x, start = i, stop = z, nthreads = 4L)
+sf_sub <- \(x, start = 1, stop) stringfish::sf_substr(x, start = start, stop = stop, nthreads = 4L)
 
 #' Convert string to stringfish vector
 #'
@@ -195,7 +215,7 @@ sf_nchar <- \(x) stringfish::sf_nchar(x, nthreads = 4L)
 #'
 #' @param x `<character>` vector
 #'
-#' @param i `<integer>` index
+#' @param start `<integer>` index
 #'
 #' @returns `<character>` vector
 #'
@@ -205,7 +225,7 @@ sf_nchar <- \(x) stringfish::sf_nchar(x, nthreads = 4L)
 #' @autoglobal
 #'
 #' @export
-take_at <- \(x, i = 1) sf_sub(x, i = i, z = i)
+take_at <- \(x, start = 1) sf_sub(x, start = start, stop = start)
 
 #' Split Vector by Index Subset
 #'
@@ -213,9 +233,9 @@ take_at <- \(x, i = 1) sf_sub(x, i = i, z = i)
 #'
 #' @param y `<character>` vector; default is `x`
 #'
-#' @param i `<integer>` index start
+#' @param start `<integer>` index start
 #'
-#' @param z `<integer>` index end
+#' @param stop `<integer>` index end
 #'
 #' @returns `<character>` vector
 #'
@@ -226,12 +246,12 @@ take_at <- \(x, i = 1) sf_sub(x, i = i, z = i)
 #'
 #' (beg <- paste0(take_at(end, 5), sf_remove(end, "[A-Z]$")))
 #'
-#' split_at(x = end, y = beg, i = 1, z = 2)
+#' split_at(x = end, y = beg, start = 1, stop = 2)
 #'
 #' @autoglobal
 #'
 #' @export
-split_at <- \(x, y = x, i, z) collapse::rsplit(x, sf_sub(y, i, z), use.names = FALSE)
+split_at <- \(x, y = x, start, stop) collapse::rsplit(x, sf_sub(x = y, start = start, stop = stop), use.names = FALSE)
 
 #' Split Vector
 #'
@@ -245,7 +265,7 @@ split_at <- \(x, y = x, i, z) collapse::rsplit(x, sf_sub(y, i, z), use.names = F
 #' @autoglobal
 #'
 #' @export
-split_1 <- \(x) split_at(x, y = x, i = 1, z = 1)
+split_1 <- \(x) split_at(x, y = x, start = 1, stop = 1)
 
 #' Detect by Regex
 #'
@@ -426,29 +446,4 @@ sort_order <- \(x) {
     )
 
   smush(smush(alph), smush(numb))
-}
-
-#' Convert Letters to Integers
-#'
-#' @param x `<character>` vector of letters
-#'
-#' @examples
-#' letters_to_numbers(LETTERS)
-#'
-#' @returns `<integer>` vector
-#'
-#' @importFrom stats setNames
-#'
-#' @autoglobal
-#'
-#' @export
-letters_to_numbers <- \(x) {
-
-  stopifnot(is.character(x))
-
-  unname(
-    setNames(
-      seq_along(LETTERS), LETTERS)[
-      sf_extract(x, "[A-Z]{1}")]
-    )
 }
