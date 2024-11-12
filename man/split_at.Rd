@@ -9,7 +9,7 @@ split_at(x, y = x, i, z)
 \arguments{
 \item{x}{\verb{<character>} vector}
 
-\item{y}{\verb{<character>} vector}
+\item{y}{\verb{<character>} vector; default is \code{x}}
 
 \item{i}{\verb{<integer>} index start}
 

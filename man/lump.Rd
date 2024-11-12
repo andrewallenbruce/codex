@@ -7,12 +7,12 @@
 lump(x, threshold = 3)
 }
 \arguments{
-\item{x}{\if{html}{\out{<numeric>}} vector}
+\item{x}{\verb{<numeric>} vector}
 
-\item{threshold}{\if{html}{\out{<numeric>}} threshold; default is \code{3}}
+\item{threshold}{\verb{<numeric>} threshold; default is \code{3}}
 }
 \value{
-\if{html}{\out{<numeric>}} vector
+\verb{<numeric>} vector
 }
 \description{
 Lump Like Vectors Together

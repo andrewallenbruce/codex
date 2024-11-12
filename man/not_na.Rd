@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{not_na}
 \alias{not_na}
-\title{!is.na(x)}
+\title{Predicate to filter out NAs}
 \usage{
 not_na(x)
 }
@@ -13,7 +13,7 @@ not_na(x)
 \verb{<logical>} vector
 }
 \description{
-!is.na(x)
+Predicate to filter out NAs
 }
 \examples{
 c(NA, "AA") |> not_na()

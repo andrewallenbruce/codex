@@ -1,4 +1,24 @@
-#' !is.na(x)
+#' If Else wrapper using [kit::iif()]
+#'
+#' @param x `<logical>` vector
+#'
+#' @param yes,no Values to return depending on TRUE/FALSE element of `x`. Must
+#'   be same type and be either length 1 or same length of `x`.
+#'
+#' @returns vector of same length as `x` and attributes as `yes`. Data values
+#'          are taken from values of `yes` and `no`.
+#'
+#' @examples
+#' x <- c(1:4, 3:2, 1:4)
+#'
+#' iif_else(x > 2L, x, x - 1L)
+#'
+#' @autoglobal
+#'
+#' @export
+iif_else <- \(x, yes, no) kit::iif(test = x, yes = yes, no = no, nThread = 4L)
+
+#' Predicate to filter out NAs
 #'
 #' @param x vector
 #'
@@ -129,7 +149,7 @@ gchop <- \(v, g) vctrs::vec_chop(v, sizes = vctrs::vec_run_sizes(g))
 #'
 #' @param x `<character>` vector
 #'
-#' @param i `<integer>` index start
+#' @param i `<integer>` index start; default is `1`
 #'
 #' @param z `<integer>` index end
 #'
@@ -143,7 +163,7 @@ gchop <- \(v, g) vctrs::vec_chop(v, sizes = vctrs::vec_run_sizes(g))
 #' @export
 sf_sub <- \(x, i = 1, z) stringfish::sf_substr(x, start = i, stop = z, nthreads = 4L)
 
-#' Convert string to stringfish
+#' Convert string to stringfish vector
 #'
 #' @param x `<character>` vector
 #'
@@ -156,6 +176,20 @@ sf_sub <- \(x, i = 1, z) stringfish::sf_substr(x, start = i, stop = z, nthreads 
 #'
 #' @export
 sf_convert <- \(x) stringfish::convert_to_sf(x)
+
+#' Count number of characters in character vector
+#'
+#' @param x `<character>` vector
+#'
+#' @returns `<character>` stringfish vector
+#'
+#' @examples
+#' sf_nchar(random_hcpcs())
+#'
+#' @autoglobal
+#'
+#' @export
+sf_nchar <- \(x) stringfish::sf_nchar(x, nthreads = 4L)
 
 #' Subset Vector at Index
 #'
@@ -177,7 +211,7 @@ take_at <- \(x, i = 1) sf_sub(x, i = i, z = i)
 #'
 #' @param x `<character>` vector
 #'
-#' @param y `<character>` vector
+#' @param y `<character>` vector; default is `x`
 #'
 #' @param i `<integer>` index start
 #'
@@ -206,7 +240,7 @@ split_at <- \(x, y = x, i, z) collapse::rsplit(x, sf_sub(y, i, z), use.names = F
 #' @returns `<character>` vector
 #'
 #' @examples
-#' split_1(random_hcpcs(10))
+#' split_1(c("AA", strrep(LETTERS[1:5], 2), "Z"))
 #'
 #' @autoglobal
 #'

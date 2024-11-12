@@ -15,6 +15,7 @@ Imports:
     collapse,
     data.table,
     glue,
+    kit,
     purrr,
     rlang,
     stringfish,

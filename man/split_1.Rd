@@ -16,6 +16,6 @@ split_1(x)
 Split Vector
 }
 \examples{
-split_1(random_hcpcs(10))
+split_1(c("AA", strrep(LETTERS[1:5], 2), "Z"))
 
 }

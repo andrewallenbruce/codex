@@ -10,15 +10,15 @@ jaccard(x, y)
 \item{x, y}{vectors representing the two sets.}
 }
 \value{
-\if{html}{\out{<numeric>}} value
+\verb{<numeric>} value
 }
 \description{
 Calculate the Jaccard index between two sets.
 }
 \details{
-The Jaccard index, also known as the Jaccard similarity coefficient, measures
-the similarity between two sets by comparing the size of their intersection
-to the size of their union.
+The Jaccard index, also known as the Jaccard similarity coefficient,
+measures the similarity between two sets by comparing the size of their
+intersection to the size of their union.
 }
 \examples{
 jaccard(c(1, 2, 3), c(2, 3, 4))

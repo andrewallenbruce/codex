@@ -33,10 +33,8 @@ group_3 <- function(x) {
       a2 = take_at(x, 2),
       a3 = take_at(x, 3),
       i1 = groupid(take_at(x))) |>
-      fgroup_by(a1) |>
-      fmutate(i2 = groupid(a2)) |>
-      fgroup_by(a1, a2) |>
-      fmutate(i3 = groupid(a3)) |>
+      fgroup_by(a1) |> fmutate(i2 = groupid(a2)) |>
+      fgroup_by(a1, a2) |> fmutate(i3 = groupid(a3)) |>
       fungroup()
 
     lone <- fcount(idx, i1, add = TRUE) |>

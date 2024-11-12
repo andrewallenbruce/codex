@@ -9,7 +9,7 @@ sf_sub(x, i = 1, z)
 \arguments{
 \item{x}{\verb{<character>} vector}
 
-\item{i}{\verb{<integer>} index start}
+\item{i}{\verb{<integer>} index start; default is \code{1}}
 
 \item{z}{\verb{<integer>} index end}
 }
