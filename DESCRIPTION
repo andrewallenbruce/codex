@@ -14,11 +14,13 @@ Imports:
     cheapr,
     collapse,
     data.table,
+    dplyr,
     glue,
     kit,
     purrr,
     rlang,
     stringfish,
+    stringi,
     stringr,
     vctrs
 Suggests: 

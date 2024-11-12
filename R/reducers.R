@@ -1,0 +1,121 @@
+#' Reduce Runs
+#'
+#' @param x `<list>` of character vectors
+#'
+#' @returns `<list>` of character vectors
+#'
+#' @examples
+#' x <- random_hcpcs2(20) |>
+#'    split_lengths() |>
+#'    split_first() |>
+#'    process_groups()
+#'
+#' delist(x$g2) |>
+#'    stringr::str_split_fixed("", max_vlen(x$g2)) |>
+#'    as.data.frame() |>
+#'    purrr::map(uniq_narm) |>
+#'    purrr::map(sort_order) |>
+#'    purrr::map(reduce_runs)
+#'
+#' @importFrom collapse %!in% fgroup_by fungroup fcount fsubset join groupid fselect
+#' @importFrom purrr map list_c
+#' @importFrom data.table data.table
+#'
+#' @autoglobal
+#'
+#' @export
+reduce_runs <- function(x) {
+  if (sf_nchar(x) == 1)
+    return(x)
+
+  test <- setNames(rep(0, 37), c(0:9, "&", LETTERS))
+
+  vec <- test[c(splits(x), "&")]
+
+  vec <- vec[not_na(vec)]
+
+  test[names(vec)] <- 1
+
+  test[names(test) == "&"] <- 0
+
+  groups <- data.table(value = names(test),
+                       keys = test,
+                       group = groupid(test)) |>
+    fgroup_by(group)
+
+  groups <- join(groups,
+                 fcount(groups, group),
+                 on = "group",
+                 verbose = 0) |>
+    fungroup() |>
+    fsubset(keys == 1) |>
+    fsubset(N >= 3) |>
+    fselect(value, group)
+
+  if (empty(groups))
+    return(x)
+
+  xgroups <- gchop(groups$value, groups$group) |>
+    map(smush) |>
+    list_c()
+
+  if (all(xgroups == smush(c(0:9, "&", LETTERS))))
+    return("[A-Z0-9]")
+
+  replacements <- dplyr::left_join(
+    dplyr::slice_min(groups, by = group, order_by = value) |> dplyr::rename(start = value),
+    dplyr::slice_max(groups, by = group, order_by = value) |> dplyr::rename(end = value),
+    by = dplyr::join_by(group)
+  ) |>
+    glue::glue_data("{start}-{end}") |>
+    as.vector()
+
+  res <- stringi::stri_replace_all_regex(x, xgroups, replacements, vectorize_all = FALSE)
+
+  bracket(res)
+}
+
+#' Reduce Length 2
+#'
+#' @param x `<list>` of character vectors
+#'
+#' @returns `<list>` of character vectors
+#'
+#' @examples
+#' x <- random_hcpcs(20) |>
+#'    split_lengths() |>
+#'    split_first() |>
+#'    process_groups()
+#'
+#' red2(x)
+#'
+#' @importFrom purrr map map_chr modify_if
+#' @importFrom stringr str_split_fixed
+#'
+#' @autoglobal
+#'
+#' @export
+red2 <- function(x) {
+  x <- getelem(x, "g2")
+
+  if (empty(x))
+    return(character(0))
+
+  length_gto <- \(x) length(x) > 1
+
+  modify_if(x, length_gto, function(x) {
+    parts <- str_split_fixed(x, "", max_vlen(x)) |>
+      as.data.frame() |>
+      map(uniq_narm) |>
+      map(sort_order) |>
+      map(reduce_runs) |>
+      delist()
+
+    multi <- sf_nchar(parts) > 1
+    nobrk <- !sf_detect(parts[multi], "\\[|\\]")
+
+    parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+
+    smush(parts)
+  })
+}

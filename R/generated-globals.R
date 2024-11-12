@@ -2,23 +2,62 @@
 
 utils::globalVariables(c(
   # <group_3>
+  # <group_4>
+  # <group_5>
   "a1",
   # <group_3>
+  # <group_4>
+  # <group_5>
   "a2",
   # <group_3>
+  # <group_4>
+  # <group_5>
   "a3",
+  # <group_4>
+  # <group_5>
+  "a4",
+  # <group_5>
+  "a5",
   # <group_3>
+  # <group_4>
+  # <group_5>
   "code",
   # <group_3>
+  # <group_4>
+  # <group_5>
   "G",
+  # <reduce_runs>
+  "group",
+  # <group_4>
+  "grp1",
+  # <group_5>
+  "grp2",
   # <group_3>
+  # <group_4>
+  # <group_5>
   "i1",
   # <group_3>
+  # <group_4>
+  # <group_5>
   "i2",
   # <group_3>
+  # <group_4>
+  # <group_5>
   "i3",
+  # <group_4>
+  # <group_5>
+  "i4",
+  # <group_5>
+  "i5",
+  # <reduce_runs>
+  "keys",
   # <group_3>
+  # <group_4>
+  # <group_5>
+  # <reduce_runs>
   "N",
+  # <reduce_runs>
+  "value",
   # <remove_redundant>
   # <split_first>
   "x1",
