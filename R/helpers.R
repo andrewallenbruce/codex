@@ -137,9 +137,9 @@ max_vlen <- \(x) collapse::fmax(vlen(x))
 #'
 #' empty(list())
 #'
-#' empty(list(character(0))
+#' empty(list(character(0)))
 #'
-#' empty(list(x = character(0))
+#' empty(list(x = character(0)))
 #'
 #' @autoglobal
 #'

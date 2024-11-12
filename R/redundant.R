@@ -53,7 +53,7 @@ rr <- \(...) contrast(...)
 #'    split_lengths() |>
 #'    remove_redundant()
 #'
-#' @importFrom collapse %=% .c
+#' @importFrom collapse .c %=%
 #'
 #' @export
 #'
