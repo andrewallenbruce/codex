@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-## Installation
+## :package: Installation
 
 You can install **`codex`** from [GitHub](https://github.com/) with:
 

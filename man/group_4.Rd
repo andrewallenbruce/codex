@@ -16,7 +16,7 @@ group_4(x)
 Group Length 4
 }
 \examples{
-c("C75", "C97", "G02", "G04") |>
+c("C751", "C971", "G020", "G040") |>
    split_lengths() |>
    remove_redundant() |>
    split_first() |>

@@ -81,7 +81,7 @@ group_3 <- function(x) {
 #' @returns `<list>` of character vectors
 #'
 #' @examples
-#' c("C75", "C97", "G02", "G04") |>
+#' c("C751", "C971", "G020", "G040") |>
 #'    split_lengths() |>
 #'    remove_redundant() |>
 #'    split_first() |>
@@ -165,7 +165,7 @@ group_4 <- function(x) {
 #' @returns `<list>` of character vectors
 #'
 #' @examples
-#' c("C75", "C97", "G02", "G04") |>
+#' c("C7510", "C9710", "G0200", "G0400") |>
 #'    split_lengths() |>
 #'    remove_redundant() |>
 #'    split_first() |>

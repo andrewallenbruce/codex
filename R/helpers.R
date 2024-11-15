@@ -85,7 +85,7 @@ sort_order <- \(x) {
   smush(smush(alph), smush(numb))
 }
 
-#' Predicate Length Equals 1
+#' Replace Pattern Occurrences
 #'
 #' @param x `<character>` vector; strings to search in
 #'

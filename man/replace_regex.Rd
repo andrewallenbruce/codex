@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{replace_regex}
 \alias{replace_regex}
-\title{Predicate Length Equals 1}
+\title{Replace Pattern Occurrences}
 \usage{
 replace_regex(x, p, r)
 }
@@ -17,7 +17,7 @@ replace_regex(x, p, r)
 \verb{<character>} vector
 }
 \description{
-Predicate Length Equals 1
+Replace Pattern Occurrences
 }
 \examples{
 replace_regex(c('stringi R', 'REXAMINE', '123'), '( R|R.)', ' r ')

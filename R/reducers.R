@@ -146,3 +146,137 @@ red2 <- function(x) {
     smush(parts)
   })
 }
+
+#' Reduce Length 3
+#'
+#' @param x `<list>` of character vectors
+#'
+#' @returns `<list>` of character vectors
+#'
+#' @examples
+#' random_hcpcs(20) |>
+#'    split_lengths() |>
+#'    split_first() |>
+#'    process_groups() |>
+#'    red3()
+#'
+#' @importFrom purrr map map_chr modify_if
+#'
+#' @autoglobal
+#'
+#' @export
+red3 <- function(x) {
+
+  x <- getelem(x, "g3")
+
+  if (empty(x)) return(character(0))
+
+  map(x, function(x) {
+
+    modify_if(x, len_gt_one, function(x) {
+
+      parts <- split_max_vlen(x) |>
+        as.data.frame() |>
+        map(uniq_narm) |>
+        map(sort_order) |>
+        map(reduce_runs) |>
+        delist()
+
+      multi <- sf_nchar(parts) > 1
+      nobrk <- !sf_detect(parts[multi], "\\[|\\]")
+
+      parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+      smush(parts)
+    })
+  })
+}
+
+#' Reduce Length 4
+#'
+#' @param x `<list>` of character vectors
+#'
+#' @returns `<list>` of character vectors
+#'
+#' @examples
+#' random_hcpcs(20) |>
+#'    split_lengths() |>
+#'    split_first() |>
+#'    process_groups() |>
+#'    red4()
+#'
+#' @importFrom purrr map map_chr modify_if
+#'
+#' @autoglobal
+#'
+#' @export
+red4 <- function(x) {
+
+  x <- getelem(x, "g4")
+
+  if (empty(x))
+    return(character(0))
+
+  map(x, function(x) {
+
+    modify_if(x, len_gt_one, function(x) {
+
+      parts <- split_max_vlen(x) |>
+        as.data.frame() |>
+        map(uniq_narm) |>
+        map(sort_order) |>
+        map(reduce_runs) |>
+        delist()
+
+      multi <- sf_nchar(parts) > 1
+      nobrk <- !sf_detect(parts[multi], "\\[|\\]")
+
+      parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+      smush(parts)
+    })
+  })
+}
+
+#' Reduce Length 5
+#'
+#' @param x `<list>` of character vectors
+#'
+#' @returns `<list>` of character vectors
+#'
+#' @examples
+#' random_hcpcs(20) |>
+#'    split_lengths() |>
+#'    split_first() |>
+#'    process_groups() |>
+#'    red5()
+#'
+#' @importFrom purrr map map_chr modify_if
+#'
+#' @autoglobal
+#'
+#' @export
+red5 <- function(x) {
+
+  x <- getelem(x, "g5")
+
+  if (empty(x))
+    return(character(0))
+
+  map(x, function(x) {
+
+    modify_if(x, len_gt_one, function(x) {
+
+      parts <- split_max_vlen(x) |>
+        as.data.frame() |>
+        map(uniq_narm) |>
+        map(sort_order) |>
+        map(reduce_runs) |>
+        delist()
+
+      multi <- sf_nchar(parts) > 1
+      nobrk <- !sf_detect(parts[multi], "\\[|\\]")
+
+      parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+      smush(parts)
+    })
+  })
+}
