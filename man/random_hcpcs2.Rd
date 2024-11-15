@@ -2,7 +2,7 @@
 % Please edit documentation in R/random_hcpcs.R
 \name{random_hcpcs2}
 \alias{random_hcpcs2}
-\title{Generate Random HCPCS Codes Vector (Version 2)}
+\title{Generate Random HCPCS Codes Vector}
 \usage{
 random_hcpcs2(n = 10)
 }
@@ -13,8 +13,9 @@ random_hcpcs2(n = 10)
 \verb{<character>} vector
 }
 \description{
-Generate Random HCPCS Codes Vector (Version 2)
+Generate Random HCPCS Codes Vector
 }
 \examples{
 random_hcpcs2()
 }
+\keyword{internal}

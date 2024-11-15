@@ -5,11 +5,13 @@
 #' @returns `<character>` vector
 #'
 #' @examples
-#' random_hcpcs()
+#' random_hcpcs2()
 #' @export
 #'
+#' @keywords internal
+#'
 #' @autoglobal
-random_hcpcs <- function(n = 10) {
+random_hcpcs2 <- function(n = 10) {
 
   h <- sf_convert(get_pin("hcpcs_vec"))
 
@@ -28,11 +30,11 @@ random_hcpcs <- function(n = 10) {
 #' @returns `<character>` vector
 #'
 #' @examples
-#' random_hcpcs2()
+#' random_hcpcs()
 #' @export
 #'
 #' @autoglobal
-random_hcpcs2 <- function(n = 10) {
+random_hcpcs <- function(n = 10) {
 
   p <- sf_c(sf_extract(LETTERS, "[^DINOW-Z]"), 0:9)
 

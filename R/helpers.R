@@ -84,3 +84,49 @@ sort_order <- \(x) {
 
   smush(smush(alph), smush(numb))
 }
+
+#' Predicate Length Equals 1
+#'
+#' @param x `<character>` vector; strings to search in
+#'
+#' @param p `<character>` vector; search patterns
+#'
+#' @param r `<character>` vector with replacements for matched patterns
+#'
+#' @returns `<character>` vector
+#'
+#' @examples
+#' replace_regex(c('stringi R', 'REXAMINE', '123'), '( R|R.)', ' r ')
+#'
+#' @autoglobal
+#'
+#' @export
+replace_regex <- \(x, p, r) stringi::stri_replace_all_regex(str = x, pattern = p, replacement = r, vectorize_all = FALSE)
+
+#' Predicate Length Greater Than 1
+#'
+#' @param x `<character>` string
+#'
+#' @returns `<logical>`
+#'
+#' @examples
+#' len_gt_one(c("XYZ"))
+#'
+#' @autoglobal
+#'
+#' @export
+len_gt_one <- \(x) length(x) > 1
+
+#' Predicate Length Equals 1
+#'
+#' @param x `<character>` string
+#'
+#' @returns `<logical>`
+#'
+#' @examples
+#' len_eq_one(c("XYZ"))
+#'
+#' @autoglobal
+#'
+#' @export
+len_eq_one <- \(x) length(x) == 1

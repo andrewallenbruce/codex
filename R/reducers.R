@@ -70,9 +70,40 @@ reduce_runs <- function(x) {
     glue::glue_data("{start}-{end}") |>
     as.vector()
 
-  res <- stringi::stri_replace_all_regex(x, xgroups, replacements, vectorize_all = FALSE)
+  bracket(replace_regex(x, xgroups, replacements))
+}
 
-  bracket(res)
+#' Reduce Length 1
+#'
+#' @param x `<list>` of character vectors
+#'
+#' @returns `<list>` of character vectors
+#'
+#' @examples
+#' random_hcpcs(20) |>
+#'    split_lengths() |>
+#'    split_first() |>
+#'    process_groups() |>
+#'    red1()
+#'
+#' @autoglobal
+#'
+#' @export
+red1 <- function(x) {
+  x <- getelem(x, "g1")[[1]]
+
+  if (empty(x))
+    return(character(0))
+
+  re <- sort_order(x) |>
+    reduce_runs()
+
+  if (re == "[A-Z0-9]")
+    return(paste0("^", re, "{5}$"))
+
+  post <- iif_else(sf_detect(re, "\\[?[0-9]{1}"), "[A-Z0-9]", "[0-9]")
+
+  paste0("^", re, post, "{4}")
 }
 
 #' Reduce Length 2
@@ -82,15 +113,13 @@ reduce_runs <- function(x) {
 #' @returns `<list>` of character vectors
 #'
 #' @examples
-#' x <- random_hcpcs(20) |>
+#' random_hcpcs(20) |>
 #'    split_lengths() |>
 #'    split_first() |>
-#'    process_groups()
-#'
-#' red2(x)
+#'    process_groups() |>
+#'    red2()
 #'
 #' @importFrom purrr map map_chr modify_if
-#' @importFrom stringr str_split_fixed
 #'
 #' @autoglobal
 #'
@@ -101,10 +130,8 @@ red2 <- function(x) {
   if (empty(x))
     return(character(0))
 
-  length_gto <- \(x) length(x) > 1
-
-  modify_if(x, length_gto, function(x) {
-    parts <- str_split_fixed(x, "", max_vlen(x)) |>
+  modify_if(x, len_gt_one, function(x) {
+    parts <- split_max_vlen(x) |>
       as.data.frame() |>
       map(uniq_narm) |>
       map(sort_order) |>

@@ -168,3 +168,22 @@ splits <- \(x) {
 
   res
 }
+
+#' Split String into Pieces
+#'
+#' Splits each string in a character vector into a fixed number of pieces,
+#' returning a character matrix.
+#'
+#' @param x `<character>` vector
+#'
+#' @returns `<list>` of character vectors
+#'
+#' @examples
+#' fruits <- c("apples and oranges and pears and bananas", "pineapples and mangos and guavas")
+#'
+#' split_max_vlen(fruits)
+#'
+#' @autoglobal
+#'
+#' @export
+split_max_vlen <- \(x) stringr::str_split_fixed(string = x, pattern = "", n = max_vlen(x))
