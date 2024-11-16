@@ -32,7 +32,6 @@
 <url><loc>https://andrewallenbruce.github.io/codex/reference/parentheses.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/process_groups.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/random_hcpcs.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/codex/reference/random_hcpcs2.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/recombine2.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/recombine3.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/recombine4.html</loc></url>
@@ -53,6 +52,8 @@
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_detect.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_extract.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_nchar.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/codex/reference/sf_ndetect.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/codex/reference/sf_nextract.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_remove.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_smush.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_strsplit.html</loc></url>
