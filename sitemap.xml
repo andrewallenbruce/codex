@@ -9,6 +9,7 @@
 <url><loc>https://andrewallenbruce.github.io/codex/reference/codex-package.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/contrast.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/delist.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/codex/reference/desplit.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/empty.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/gchop.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/get_pin.html</loc></url>
@@ -47,6 +48,8 @@
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_extract.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_nchar.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_remove.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/codex/reference/sf_smush.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/codex/reference/sf_strsplit.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sf_sub.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/smush.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/sort_order.html</loc></url>
@@ -56,7 +59,6 @@
 <url><loc>https://andrewallenbruce.github.io/codex/reference/split_first.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/split_lengths.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/split_max_vlen.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/codex/reference/splits.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/strsort.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/take_at.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/codex/reference/uniq.html</loc></url>
