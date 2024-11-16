@@ -291,3 +291,30 @@ red5 <- function(x) {
     })
   })
 }
+
+#' Reduce Groups
+#'
+#' @param x `<list>` of character vectors
+#'
+#' @returns `<list>` of character vectors
+#'
+#' @examples
+#' random_hcpcs(20) |>
+#'    split_lengths() |>
+#'    split_first() |>
+#'    process_groups() |>
+#'    reduce_groups()
+#'
+#' @autoglobal
+#'
+#' @export
+reduce_groups <- function(x) {
+
+  list(
+    g1 = red1(x),
+    g2 = red2(x),
+    g3 = red3(x),
+    g4 = red4(x),
+    g5 = red5(x)
+  )
+}
