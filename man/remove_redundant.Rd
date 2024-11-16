@@ -4,12 +4,10 @@
 \alias{remove_redundant}
 \title{Remove Redundant Characters}
 \usage{
-remove_redundant(x, verbose = FALSE)
+remove_redundant(x)
 }
 \arguments{
 \item{x}{\verb{<list>} of vectors}
-
-\item{verbose}{\verb{<logical>} print output; default \code{FALSE}}
 }
 \value{
 \verb{<list>} of vectors

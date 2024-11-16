@@ -16,11 +16,13 @@
 #' @export
 #'
 #' @autoglobal
-contrast <- \(long, short) {
+contrast <- function(long, short) {
 
-  if (empty(long))  return(character(0))
+  if (empty(long))
+    return(character(0))
 
-  if (empty(short)) return(long)
+  if (empty(short))
+    return(long)
 
   long[
     sf_sub(
@@ -44,8 +46,6 @@ rr <- \(...) contrast(...)
 #'
 #' @param x `<list>` of vectors
 #'
-#' @param verbose `<logical>` print output; default `FALSE`
-#'
 #' @returns `<list>` of vectors
 #'
 #' @examples
@@ -58,21 +58,15 @@ rr <- \(...) contrast(...)
 #' @export
 #'
 #' @autoglobal
-remove_redundant <- function(x, verbose = FALSE) {
+remove_redundant <- function(x) {
 
   .c(x1, x2, x3, x4, x5) %=% x
 
-  out <- list(
+  list(
     x1 = x1,
     x2 = rr(x2, x1),
     x3 = rr(x3, x1) |> rr(x2),
     x4 = rr(x4, x1) |> rr(x2) |> rr(x3),
     x5 = rr(x5, x1) |> rr(x2) |> rr(x3) |> rr(x4)
   )
-
-  if (verbose) {
-    return(invisible(out))
-  } else {
-    return(out)
-  }
 }

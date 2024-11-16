@@ -2,19 +2,24 @@
 % Please edit documentation in R/random_hcpcs.R
 \name{random_hcpcs}
 \alias{random_hcpcs}
-\title{Generate Random HCPCS Codes Vector (Version 2)}
+\title{Generate Random HCPCS Codes Vector}
 \usage{
-random_hcpcs(n = 10)
+random_hcpcs(n = 10, lng = c(1:5))
 }
 \arguments{
 \item{n}{\verb{<integer>} number of codes; default is \code{10}}
+
+\item{lng}{\verb{<integer>} vector of lengths; default is \code{c(1:5)}}
 }
 \value{
 \verb{<character>} vector
 }
 \description{
-Generate Random HCPCS Codes Vector (Version 2)
+Generate Random HCPCS Codes Vector
 }
 \examples{
 random_hcpcs()
+
+random_hcpcs(50, 3)
+
 }

@@ -76,6 +76,22 @@ take_at <- \(x, start = 1) sf_sub(x, start = start, stop = start)
 #' @export
 sf_detect <- \(s, p) stringfish::sf_grepl(s, p, nthreads = 4L)
 
+#' Detect Opposite by Regex
+#'
+#' @param s `<character>` vector
+#'
+#' @param p `<character>` regex pattern
+#'
+#' @returns `<logical>` vector
+#'
+#' @examples
+#' sf_ndetect(random_hcpcs(), "[A-Z]{1}")
+#'
+#' @autoglobal
+#'
+#' @export
+sf_ndetect <- \(s, p) !stringfish::sf_grepl(s, p, nthreads = 4L)
+
 #' Extract by Regex
 #'
 #' @param s `<character>` vector
@@ -85,12 +101,32 @@ sf_detect <- \(s, p) stringfish::sf_grepl(s, p, nthreads = 4L)
 #' @returns `<character>` vector
 #'
 #' @examples
-#' sf_extract(random_hcpcs(), "[A-Z]{1}")
+#' sf_extract(sf_c(LETTERS, 0:9), "[A-Z]")
+#'
+#' sf_extract(random_hcpcs(), "[A-Z]")
 #'
 #' @autoglobal
 #'
 #' @export
 sf_extract <- \(s, p) s[sf_detect(s, p)]
+
+#' Extract Opposite by Regex
+#'
+#' @param s `<character>` vector
+#'
+#' @param p `<character>` regex pattern
+#'
+#' @returns `<character>` vector
+#'
+#' @examples
+#' sf_nextract(sf_c(LETTERS, 0:9), "[A-Z]")
+#'
+#' sf_nextract(random_hcpcs(), "[A-Z]")
+#'
+#' @autoglobal
+#'
+#' @export
+sf_nextract <- \(s, p) s[sf_ndetect(s, p)]
 
 #' Remove by Regex
 #'
