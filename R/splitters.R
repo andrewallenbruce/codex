@@ -105,11 +105,7 @@ split_1 <- \(x) split_at(x, y = x, start = 1, stop = 1)
 #' @returns `<list>` of character vectors
 #'
 #' @examples
-#' x <- random_hcpcs(10) |>
-#'    split_lengths() |>
-#'    remove_redundant()
-#'
-#' split_end(x$x5)
+#' split_end(c("0741T", "E0628", "L4387", "0360T", "1127F", "0002M"))
 #'
 #' @autoglobal
 #'
@@ -120,7 +116,6 @@ split_end <- \(x) {
 
     end <- sf_extract(x, "[A-Z]$")
     beg <- paste0(take_at(end, 5), sf_remove(end, "[A-Z]$"))
-    # beg <- glue("{take_at(end, 5)}{sf_remove(end, '[A-Z]$')}")
 
     c(split_at(x = x[!sf_detect(x, "[A-Z]$")], start = 1, stop = 1),
       split_at(x = end, y = beg, start = 1, stop = 2))
@@ -140,27 +135,27 @@ split_end <- \(x) {
 #'
 #' @examples
 #' # unnamed vector
-#' splits("XYZ")
+#' desplit("XYZ")
 #'
 #' # named vector
-#' splits(c(x = "XYZ"))
+#' desplit(c(x = "XYZ"))
 #'
 #' # unnamed list with one element
-#' splits(list("XYZ"))
+#' desplit(list("XYZ"))
 #'
 #' # unnamed list with multiple elements
-#' splits(list("YYY", "ZZZ"))
+#' desplit(list("YYY", "ZZZ"))
 #'
 #' # named list with one element
-#' splits(list(x = "XYZ"))
+#' desplit(list(x = "XYZ"))
 #'
 #' # named list with multiple elements
-#' splits(list(x = "YYY", xx = "ZZZ"))
+#' desplit(list(x = "YYY", xx = "ZZZ"))
 #'
 #' @autoglobal
 #'
 #' @export
-splits <- \(x) {
+desplit <- \(x) {
 
   res <- strsplit(delist(x), "")
 

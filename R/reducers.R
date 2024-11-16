@@ -5,13 +5,13 @@
 #' @returns `<list>` of character vectors
 #'
 #' @examples
-#' x <- random_hcpcs2(20) |>
+#' x <- random_hcpcs(20) |>
 #'    split_lengths() |>
 #'    split_first() |>
 #'    process_groups()
 #'
 #' delist(x$g2) |>
-#'    stringr::str_split_fixed("", max_vlen(x$g2)) |>
+#'    split_max_vlen() |>
 #'    as.data.frame() |>
 #'    purrr::map(uniq_narm) |>
 #'    purrr::map(sort_order) |>
@@ -20,6 +20,7 @@
 #' @importFrom collapse %!in% fgroup_by fungroup fcount fsubset join groupid fselect
 #' @importFrom purrr map list_c
 #' @importFrom data.table data.table
+#' @importFrom stringr str_glue_data
 #'
 #' @autoglobal
 #'
@@ -30,7 +31,7 @@ reduce_runs <- function(x) {
 
   test <- setNames(rep(0, 37), c(0:9, "&", LETTERS))
 
-  vec <- test[c(splits(x), "&")]
+  vec <- test[c(desplit(x), "&")]
 
   vec <- vec[not_na(vec)]
 
@@ -38,15 +39,17 @@ reduce_runs <- function(x) {
 
   test[names(test) == "&"] <- 0
 
-  groups <- data.table(value = names(test),
-                       keys = test,
-                       group = groupid(test)) |>
+  groups <- data.table(
+    value = names(test),
+    keys = test,
+    group = groupid(test)) |>
     fgroup_by(group)
 
-  groups <- join(groups,
-                 fcount(groups, group),
-                 on = "group",
-                 verbose = 0) |>
+  groups <- join(
+    groups,
+    fcount(groups, group),
+    on = "group",
+    verbose = 0) |>
     fungroup() |>
     fsubset(keys == 1) |>
     fsubset(N >= 3) |>
@@ -65,9 +68,8 @@ reduce_runs <- function(x) {
   replacements <- dplyr::left_join(
     dplyr::slice_min(groups, by = group, order_by = value) |> dplyr::rename(start = value),
     dplyr::slice_max(groups, by = group, order_by = value) |> dplyr::rename(end = value),
-    by = dplyr::join_by(group)
-  ) |>
-    glue::glue_data("{start}-{end}") |>
+    by = dplyr::join_by(group)) |>
+    str_glue_data("{start}-{end}") |>
     as.vector()
 
   bracket(replace_regex(x, xgroups, replacements))
@@ -131,6 +133,7 @@ red2 <- function(x) {
     return(character(0))
 
   modify_if(x, len_gt_one, function(x) {
+
     parts <- split_max_vlen(x) |>
       as.data.frame() |>
       map(uniq_narm) |>
@@ -139,6 +142,7 @@ red2 <- function(x) {
       delist()
 
     multi <- sf_nchar(parts) > 1
+
     nobrk <- !sf_detect(parts[multi], "\\[|\\]")
 
     parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
@@ -169,7 +173,8 @@ red3 <- function(x) {
 
   x <- getelem(x, "g3")
 
-  if (empty(x)) return(character(0))
+  if (empty(x))
+    return(character(0))
 
   map(x, function(x) {
 
@@ -183,9 +188,11 @@ red3 <- function(x) {
         delist()
 
       multi <- sf_nchar(parts) > 1
+
       nobrk <- !sf_detect(parts[multi], "\\[|\\]")
 
       parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+
       smush(parts)
     })
   })
@@ -228,9 +235,11 @@ red4 <- function(x) {
         delist()
 
       multi <- sf_nchar(parts) > 1
+
       nobrk <- !sf_detect(parts[multi], "\\[|\\]")
 
       parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+
       smush(parts)
     })
   })
@@ -273,9 +282,11 @@ red5 <- function(x) {
         delist()
 
       multi <- sf_nchar(parts) > 1
+
       nobrk <- !sf_detect(parts[multi], "\\[|\\]")
 
       parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+
       smush(parts)
     })
   })

@@ -16,13 +16,13 @@ reduce_runs(x)
 Reduce Runs
 }
 \examples{
-x <- random_hcpcs2(20) |>
+x <- random_hcpcs(20) |>
    split_lengths() |>
    split_first() |>
    process_groups()
 
 delist(x$g2) |>
-   stringr::str_split_fixed("", max_vlen(x$g2)) |>
+   split_max_vlen() |>
    as.data.frame() |>
    purrr::map(uniq_narm) |>
    purrr::map(sort_order) |>

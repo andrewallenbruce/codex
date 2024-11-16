@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{sort_order}
 \alias{sort_order}
-\title{Sort and Order Vector}
+\title{Sort, Order and Collapse Vector}
 \usage{
 sort_order(x)
 }
@@ -13,7 +13,7 @@ sort_order(x)
 \verb{<character>} vector
 }
 \description{
-Sort and Order Vector
+Sort, Order and Collapse Vector
 }
 \examples{
 (x <- sample(c(LETTERS, 0:9), size = 10))

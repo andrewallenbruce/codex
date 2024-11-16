@@ -16,10 +16,6 @@ split_end(x)
 Split Character Vector at End
 }
 \examples{
-x <- random_hcpcs(10) |>
-   split_lengths() |>
-   remove_redundant()
-
-split_end(x$x5)
+split_end(c("0741T", "E0628", "L4387", "0360T", "1127F", "0002M"))
 
 }

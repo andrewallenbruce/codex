@@ -123,3 +123,37 @@ sf_remove <- \(s, p) stringfish::sf_gsub(s, p, "", nthreads = 4L)
 #'
 #' @export
 sf_c <- \(...) stringfish::sfc(...)
+
+#' Collapse Vector
+#'
+#' @param x `<character>` vector
+#'
+#' @param sep `<character>` separator; default is `""`
+#'
+#' @returns collapsed `<character>` vector
+#'
+#' @examples
+#' sf_smush(LETTERS, "|")
+#'
+#' @autoglobal
+#'
+#' @export
+sf_smush <- \(x, sep = "") stringfish::sf_collapse(x, collapse = sep)
+
+#' Split String by Delimiter
+#'
+#' @param x `<character>` vector
+#'
+#' @param s `<character>` delimiter to split by
+#'
+#' @param fixed `<logical>` fixed or regex; default is `TRUE`
+#'
+#' @returns `<list>` of character vectors
+#'
+#' @examples
+#' sf_strsplit("A|B|C", "|")
+#'
+#' @autoglobal
+#'
+#' @export
+sf_strsplit <- \(x, s, fixed = TRUE) stringfish::sf_split(subject = x, split = s, fixed = fixed, nthreads = 4L)

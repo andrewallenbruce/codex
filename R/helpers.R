@@ -58,7 +58,7 @@ bracket <- \(x) smush(r"--{[}--", x, r"--{]}--")
 #' @export
 parentheses <- \(x) smush(r"--{(}--", x, r"--{)}--")
 
-#' Sort and Order Vector
+#' Sort, Order and Collapse Vector
 #'
 #' @param x `<character>` vector
 #'
