@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   getting-started: getting-started.html
-last_built: 2024-11-18T18:32Z
+last_built: 2024-11-19T07:26Z
 urls:
   reference: https://andrewallenbruce.github.io/codex/reference
   article: https://andrewallenbruce.github.io/codex/articles
