@@ -17,10 +17,12 @@
 #'    purrr::map(sort_order) |>
 #'    purrr::map(reduce_runs)
 #'
-#' @importFrom collapse %!in% fgroup_by fungroup fcount fsubset join groupid fselect
+#' @importFrom collapse %!in% fgroup_by fungroup fcount fsubset join groupid fselect frename
 #' @importFrom purrr map list_c
 #' @importFrom data.table data.table
 #' @importFrom stringr str_glue_data
+#' @importFrom stats setNames
+#' @importFrom dplyr slice_min slice_max
 #'
 #' @autoglobal
 #'
@@ -39,17 +41,15 @@ reduce_runs <- function(x) {
 
   test[names(test) == "&"] <- 0
 
-  groups <- data.table(
-    value = names(test),
-    keys = test,
-    group = groupid(test)) |>
+  groups <- data.table(value = names(test),
+                       keys = test,
+                       group = groupid(test)) |>
     fgroup_by(group)
 
-  groups <- join(
-    groups,
-    fcount(groups, group),
-    on = "group",
-    verbose = 0) |>
+  groups <- join(groups,
+                 fcount(groups, group),
+                 on = "group",
+                 verbose = 0) |>
     fungroup() |>
     fsubset(keys == 1) |>
     fsubset(N >= 3) |>
@@ -65,10 +65,12 @@ reduce_runs <- function(x) {
   if (all(xgroups == smush(c(0:9, "&", LETTERS))))
     return("[A-Z0-9]")
 
-  replacements <- dplyr::left_join(
-    dplyr::slice_min(groups, by = group, order_by = value) |> dplyr::rename(start = value),
-    dplyr::slice_max(groups, by = group, order_by = value) |> dplyr::rename(end = value),
-    by = dplyr::join_by(group)) |>
+  replacements <- join(
+    slice_min(groups, by = group, order_by = value) |> frename(start = value),
+    slice_max(groups, by = group, order_by = value) |> frename(end = value),
+    on = "group",
+    verbose = 0
+  ) |>
     str_glue_data("{start}-{end}") |>
     as.vector()
 
@@ -88,11 +90,13 @@ reduce_runs <- function(x) {
 #'    process_groups() |>
 #'    red1()
 #'
+#' @importFrom stringr str_glue
+#'
 #' @autoglobal
 #'
 #' @export
 red1 <- function(x) {
-  x <- getelem(x, "g1")[[1]]
+  x <- getelem(x, "g1")
 
   if (empty(x))
     return(character(0))
@@ -101,11 +105,11 @@ red1 <- function(x) {
     reduce_runs()
 
   if (re == "[A-Z0-9]")
-    return(paste0("^", re, "{5}$"))
+    return(str_glue("^{re}{{5}}"))
 
   post <- iif_else(sf_detect(re, "\\[?[0-9]{1}"), "[A-Z0-9]", "[0-9]")
 
-  paste0("^", re, post, "{4}")
+  str_glue("^{re}{post}{{4}}")
 }
 
 #' Reduce Length 2
@@ -133,7 +137,6 @@ red2 <- function(x) {
     return(character(0))
 
   modify_if(x, len_gt_one, function(x) {
-
     parts <- split_max_vlen(x) |>
       as.data.frame() |>
       map(uniq_narm) |>
@@ -142,12 +145,13 @@ red2 <- function(x) {
       delist()
 
     multi <- sf_nchar(parts) > 1
+    nobrk <- sf_ndetect(parts, "\\[|\\]")
 
-    nobrk <- !sf_detect(parts[multi], "\\[|\\]")
-
-    parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+    if (any(multi[nobrk]))
+      parts[multi[nobrk]] <- map_chr(parts[multi[nobrk]], bracket)
 
     smush(parts)
+
   })
 }
 
@@ -170,16 +174,13 @@ red2 <- function(x) {
 #'
 #' @export
 red3 <- function(x) {
-
   x <- getelem(x, "g3")
 
   if (empty(x))
     return(character(0))
 
   map(x, function(x) {
-
     modify_if(x, len_gt_one, function(x) {
-
       parts <- split_max_vlen(x) |>
         as.data.frame() |>
         map(uniq_narm) |>
@@ -188,10 +189,10 @@ red3 <- function(x) {
         delist()
 
       multi <- sf_nchar(parts) > 1
+      nobrk <- sf_ndetect(parts, "\\[|\\]")
 
-      nobrk <- !sf_detect(parts[multi], "\\[|\\]")
-
-      parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+      if (any(multi[nobrk]))
+        parts[multi[nobrk]] <- map_chr(parts[multi[nobrk]], bracket)
 
       smush(parts)
     })
@@ -217,16 +218,13 @@ red3 <- function(x) {
 #'
 #' @export
 red4 <- function(x) {
-
   x <- getelem(x, "g4")
 
   if (empty(x))
     return(character(0))
 
   map(x, function(x) {
-
     modify_if(x, len_gt_one, function(x) {
-
       parts <- split_max_vlen(x) |>
         as.data.frame() |>
         map(uniq_narm) |>
@@ -235,12 +233,13 @@ red4 <- function(x) {
         delist()
 
       multi <- sf_nchar(parts) > 1
+      nobrk <- sf_ndetect(parts, "\\[|\\]")
 
-      nobrk <- !sf_detect(parts[multi], "\\[|\\]")
-
-      parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+      if (any(multi[nobrk]))
+        parts[multi[nobrk]] <- map_chr(parts[multi[nobrk]], bracket)
 
       smush(parts)
+
     })
   })
 }
@@ -264,16 +263,13 @@ red4 <- function(x) {
 #'
 #' @export
 red5 <- function(x) {
-
   x <- getelem(x, "g5")
 
   if (empty(x))
     return(character(0))
 
   map(x, function(x) {
-
     modify_if(x, len_gt_one, function(x) {
-
       parts <- split_max_vlen(x) |>
         as.data.frame() |>
         map(uniq_narm) |>
@@ -282,10 +278,10 @@ red5 <- function(x) {
         delist()
 
       multi <- sf_nchar(parts) > 1
+      nobrk <- sf_ndetect(parts, "\\[|\\]")
 
-      nobrk <- !sf_detect(parts[multi], "\\[|\\]")
-
-      parts[multi] <- iif_else(any(nobrk), map_chr(parts[multi], bracket), parts[multi])
+      if (any(multi[nobrk]))
+        parts[multi[nobrk]] <- map_chr(parts[multi[nobrk]], bracket)
 
       smush(parts)
     })
@@ -309,7 +305,6 @@ red5 <- function(x) {
 #'
 #' @export
 reduce_groups <- function(x) {
-
   list(
     g1 = red1(x),
     g2 = red2(x),

@@ -12,7 +12,6 @@
 #'
 #' @export
 split_lengths <- function(x) {
-
   stopifnot(is.character(x))
 
   x <- sf_remove(x, "\\*|\\s") |>
@@ -26,7 +25,8 @@ split_lengths <- function(x) {
     x2 = x[l == 2],
     x3 = x[l == 3],
     x4 = x[l == 4],
-    x5 = x[l == 5])
+    x5 = x[l == 5]
+  )
 }
 
 #' Split Character Vector by Lengths
@@ -47,15 +47,15 @@ split_lengths <- function(x) {
 #'
 #' @export
 split_first <- function(x) {
-
   .c(x1, x2, x3, x4, x5) %=% x
 
   list(
-    x1 = list(x1),
+    x1 = x1,
     x2 = split_1(x2),
     x3 = split_1(x3),
     x4 = split_1(x4),
-    x5 = split_end(x5))
+    x5 = split_end(x5)
+  )
 }
 
 #' Split Vector by Index Subset
@@ -111,17 +111,23 @@ split_1 <- \(x) split_at(x, y = x, start = 1, stop = 1)
 #'
 #' @export
 split_end <- \(x) {
-
   if (any(sf_detect(x, "[A-Z]$"))) {
-
     end <- sf_extract(x, "[A-Z]$")
     beg <- paste0(take_at(end, 5), sf_remove(end, "[A-Z]$"))
 
-    c(split_at(x = x[!sf_detect(x, "[A-Z]$")], start = 1, stop = 1),
-      split_at(x = end, y = beg, start = 1, stop = 2))
+    c(split_at(
+      x = x[!sf_detect(x, "[A-Z]$")],
+      start = 1,
+      stop = 1
+    ),
+    split_at(
+      x = end,
+      y = beg,
+      start = 1,
+      stop = 2
+    ))
 
   } else {
-
     split_at(x, start = 1, stop = 1)
 
   }

@@ -17,18 +17,15 @@
 #'
 #' @autoglobal
 contrast <- function(long, short) {
-
   if (empty(long))
     return(character(0))
 
   if (empty(short))
     return(long)
 
-  long[
-    sf_sub(
-      x = long,
-      start = 1,
-      stop = uniq_vlen(short)) %!in% short]
+  long[sf_sub(x = long,
+              start = 1,
+              stop = uniq_vlen(short)) %!in% short]
 }
 
 #' Alias for `contrast()`
@@ -59,7 +56,6 @@ rr <- \(...) contrast(...)
 #'
 #' @autoglobal
 remove_redundant <- function(x) {
-
   .c(x1, x2, x3, x4, x5) %=% x
 
   list(

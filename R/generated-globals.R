@@ -3,57 +3,71 @@
 utils::globalVariables(c(
   # <group_3>
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "a1",
   # <group_3>
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "a2",
   # <group_3>
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "a3",
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "a4",
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "a5",
   # <group_3>
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "code",
   # <group_3>
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "G",
   # <reduce_runs>
   "group",
   # <group_4>
   "grp1",
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "grp2",
   # <group_3>
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "i1",
   # <group_3>
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "i2",
   # <group_3>
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "i3",
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "i4",
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   "i5",
   # <reduce_runs>
   "keys",
   # <group_3>
   # <group_4>
-  # <group_5>
+  # <group_5_num>
+  # <group_5_chr>
   # <reduce_runs>
   "N",
   # <reduce_runs>

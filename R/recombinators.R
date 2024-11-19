@@ -14,24 +14,20 @@
 #'    recombine2()
 #'
 #' @importFrom purrr list_c
+#' @importFrom stringr str_glue
 #'
 #' @autoglobal
 #'
 #' @export
 recombine2 <- function(x) {
-
   x <- getelem(x, "g2")
 
   if (empty(x))
     return(character(0))
 
-  paste0(
-    "^(",
-    sf_smush(
-      list_c(x),
-      sep = "|"),
-    ")[A-Z0-9]{3}$"
-    )
+  x <- sf_smush(list_c(x), sep = "|")
+
+  str_glue("({x})")
 }
 
 #' Recombine Length 3
@@ -50,29 +46,33 @@ recombine2 <- function(x) {
 #'    recombine3()
 #'
 #' @importFrom stringr str_glue
-#' @importFrom purrr map
+#' @importFrom purrr map list_flatten
+#' @importFrom glue as_glue
 #'
 #' @autoglobal
 #'
 #' @export
 recombine3 <- function(x) {
-
   x <- getelem(x, "g3")
 
-  if (empty(x)) return(character(0))
+  if (empty(x))
+    return(character(0))
 
-  c(
-    if (empty(x[vlen(x) == 1])) character(0) else str_glue("{list_c(x[vlen(x) == 1])}"),
+  list(if (empty(x[vlen(x) == 1]))
+    NULL
+    else
+      parentheses(sf_smush(delist(x[vlen(x) == 1]), sep = "|")) |> as_glue(),
+    if (empty(x[vlen(x) > 1]))
+      NULL
+    else
+      map(x[vlen(x) > 1], function(x) {
+        front <- uniq(sf_sub(delist(x), start = 1, stop = 1))
 
-    if (empty(x[vlen(x) > 1])) character(0) else map(x[vlen(x) > 1], function(x) {
+        back  <- sf_smush(sf_remove(delist(x), str_glue("^[{front}]{{1}}")), sep = "|")
 
-          front <- uniq(sf_sub(delist(x), start = 1, stop = 1))
+        str_glue("{front}({back})")
 
-          back  <- sf_smush(sf_remove(delist(x), str_glue("^[{front}]{{1}}")), sep = "|")
-
-          str_glue("{front}({back})")
-        })
-    )
+      })) |> list_flatten()
 }
 
 #' Recombine Length 4
@@ -91,29 +91,33 @@ recombine3 <- function(x) {
 #'    recombine4()
 #'
 #' @importFrom stringr str_glue
-#' @importFrom purrr map
+#' @importFrom purrr map list_flatten
+#' @importFrom glue as_glue
 #'
 #' @autoglobal
 #'
 #' @export
 recombine4 <- function(x) {
-
   x <- getelem(x, "g4")
 
-  if (empty(x)) return(character(0))
+  if (empty(x))
+    return(character(0))
 
-  c(
-    if (empty(x[vlen(x) == 1])) character(0) else str_glue("{list_c(x[vlen(x) == 1])}"),
+  list(if (empty(x[vlen(x) == 1]))
+    NULL
+    else
+      parentheses(sf_smush(delist(x[vlen(x) == 1]), sep = "|")) |> as_glue(),
+    if (empty(x[vlen(x) > 1]))
+      NULL
+    else
+      map(x[vlen(x) > 1], function(x) {
+        front <- uniq(sf_sub(delist(x), start = 1, stop = 1))
 
-    if (empty(x[vlen(x) > 1])) character(0) else map(x[vlen(x) > 1], function(x) {
+        back  <- sf_smush(sf_remove(delist(x), str_glue("^[{front}]{{1}}")), sep = "|")
 
-      front <- uniq(sf_sub(delist(x), start = 1, stop = 1))
+        str_glue("{front}({back})")
 
-      back  <- sf_smush(sf_remove(delist(x), str_glue("^[{front}]{{1}}")), sep = "|")
-
-      str_glue("{front}({back})")
-    })
-  )
+      })) |> list_flatten()
 }
 
 #' Recombine Length 5
@@ -132,29 +136,33 @@ recombine4 <- function(x) {
 #'    recombine5()
 #'
 #' @importFrom stringr str_glue
-#' @importFrom purrr map
+#' @importFrom purrr map list_flatten
+#' @importFrom glue as_glue
 #'
 #' @autoglobal
 #'
 #' @export
 recombine5 <- function(x) {
-
   x <- getelem(x, "g5")
 
-  if (empty(x)) return(character(0))
+  if (empty(x))
+    return(character(0))
 
-  c(
-    if (empty(x[vlen(x) == 1])) character(0) else str_glue("{list_c(x[vlen(x) == 1])}"),
+  list(if (empty(x[vlen(x) == 1]))
+    NULL
+    else
+      parentheses(sf_smush(delist(x[vlen(x) == 1]), sep = "|")) |> as_glue(),
+    if (empty(x[vlen(x) > 1]))
+      NULL
+    else
+      map(x[vlen(x) > 1], function(x) {
+        front <- uniq(sf_sub(delist(x), start = 1, stop = 1))
 
-    if (empty(x[vlen(x) > 1])) character(0) else map(x[vlen(x) > 1], function(x) {
+        back  <- sf_smush(sf_remove(delist(x), str_glue("^[{front}]{{1}}")), sep = "|")
 
-      front <- uniq(sf_sub(delist(x), start = 1, stop = 1))
+        str_glue("{front}({back})")
 
-      back  <- sf_smush(sf_remove(delist(x), str_glue("^[{front}]{{1}}")), sep = "|")
-
-      str_glue("{front}({back})")
-    })
-  )
+      })) |> list_flatten()
 }
 
 #' Recombine Groups
@@ -175,7 +183,6 @@ recombine5 <- function(x) {
 #'
 #' @export
 recombine_groups <- function(x) {
-
   list(
     v1 = x$g1,
     v2 = recombine2(x),
