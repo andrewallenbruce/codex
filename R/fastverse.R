@@ -39,12 +39,26 @@ strsort <- \(x) kit::psort(x, nThread = 4L)
 #' @returns `<logical>` vector
 #'
 #' @examples
-#' c(NA, "AA") |> not_na()
+#' na(c(NA, "AA"))
 #'
 #' @autoglobal
 #'
 #' @export
-not_na <- \(x) !cheapr::is_na(x)
+na <- \(x) cheapr::is_na(x)
+
+#' Predicate to filter out NAs
+#'
+#' @param x vector
+#'
+#' @returns `<logical>` vector
+#'
+#' @examples
+#' not_na(c(NA, "AA"))
+#'
+#' @autoglobal
+#'
+#' @export
+not_na <- \(x) !na(x)
 
 #' Get named element from list
 #'
